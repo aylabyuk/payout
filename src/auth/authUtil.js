@@ -15,7 +15,7 @@ export const renderTextField = ({
         label={label}
         placeholder={placeholder}
         InputLabelProps={{ shrink: true }}
-        InputProps={{ style: {fontSize: 25}} }
+        InputProps={{ style: {fontSize: 15}} }
         error={touched && error ? true : false}
         helperText={touched && error ? error : ''}
         {...input}
@@ -43,13 +43,12 @@ export function tryLogin(data, mutate) {
         window.location.reload();
     }).catch((msg) => {
         console.log(msg)
-        window.alert(msg.graphQLErrors[0].message)
     })
 }
 
 export const loginQuery = gql`
-    mutation login($username: String!, $password: String!) {
-        login(username: $username, password: $password) {
+    mutation login($email: String!, $password: String!) {
+        login(email: $email, password: $password) {
             token
         }
     }

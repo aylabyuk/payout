@@ -12,6 +12,7 @@ import createHistory from 'history/createBrowserHistory'
 import { responsiveStoreEnhancer, responsiveStateReducer } from 'redux-responsive'
 
 import { rootReducers as reducers } from './reducers' 
+import { requireAuthentication as isAuth } from '../auth/requireAuth'
 
 import { preloadInitialData as preload } from '../preload/preloadDataHOC'
 import Layout from '../layout/Layout'
@@ -60,7 +61,7 @@ export const Routes = () => {
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <div>
-          <Route path="/" component={preload(Layout)}/>
+          <Route exact path="/" component={isAuth(preload(Layout))}/>
           <Route path="/auth" component={Auth}/>
         </div>
       </ConnectedRouter>

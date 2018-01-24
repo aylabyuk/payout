@@ -44,6 +44,8 @@ export function requireAuthentication(Component) {
                 // console.debug('logged in as ' + res.data.me.email  + '. redirecting...')
                 this.setState({ isAuthenticated: true, me: res.data.me })
             }
+        }).catch((err) => {
+            console.log(err)
         })
     }
 

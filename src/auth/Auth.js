@@ -36,6 +36,8 @@ class Auth extends Component {
             } else {
                 this.setState({loggedIn: false})
             }
+        }).catch((err) => {
+            console.log(err)
         })
     }
 
