@@ -10,8 +10,8 @@ class Content extends Component {
         const { classes } = this.props
         return (
             <main className={classes.content}>
-                <Route path='/staffs' component={Staffs} />
-                <Route path='/roles' component={Roles} />
+                <Route path='/dash/staffs' component={Staffs} />
+                <Route path='/dash/roles' component={Roles} />
 
             </main>
         );

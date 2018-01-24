@@ -9,7 +9,7 @@ const styles = theme => ({
     },
     paper: {
       padding: 0,
-      height: '100vh'
+      height: 'calc(100vh - 64px)'
     },
 });
   

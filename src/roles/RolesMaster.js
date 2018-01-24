@@ -13,9 +13,9 @@ const styles = theme => ({
     width: '100%',
     maxWidth: 1000,
     flex: 1,
+    minHeight: 'calc(100vh - 64px)',
     backgroundColor: theme.palette.background.paper,
     borderRight: '1px solid rgba(0, 0, 0, 0.12)',
-    backgroundColor: 'red'
   },
 });
 
