@@ -2,7 +2,7 @@ const initialState = {
     isSideBarOpen: false
 }
 
-export const homeReducer = (state = initialState , action) => {
+export const layoutReducer = (state = initialState , action) => {
     switch (action.type) {
       case 'TOGGLE_SIDEBAR':
         return {

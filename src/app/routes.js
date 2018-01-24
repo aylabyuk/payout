@@ -11,7 +11,7 @@ import thunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
 
 import { rootReducers as reducers } from './reducers' 
-import Home from '../home/Home'
+import Layout from '../layout/Layout'
 
 // using redux-devtools for easy redux debugging
 const composeEnhancers =
@@ -53,7 +53,7 @@ export const Routes = () => {
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <div>
-          <Route exact path="/" component={Home}/>
+          <Route exact path="/" component={Layout}/>
         </div>
       </ConnectedRouter>
     </Provider>

@@ -1,5 +1,5 @@
-import { homeReducer } from '../home/homeReducer'
+import { layoutReducer } from '../layout/layoutReducer'
 
 export const rootReducers = {
-    home: homeReducer
+    layout: layoutReducer
 }
