@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Positions extends Component {
+class Staffs extends Component {
     render() {
         return (
             <div>
-                Positions Page
+                Staffs Page
             </div>
         );
     }
 }
 
-export default Positions;
+export default Staffs;

@@ -13,7 +13,7 @@ const drawerWidth = 240;
 const styles = theme => ({
   root: {
     width: '100%',
-    height: 430,
+    height: 'calc(100vh - 56px)',
     marginTop: 0,
     zIndex: 1,
     overflow: 'hidden',
@@ -49,7 +49,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
     width: '100%',
     padding: theme.spacing.unit * 3,
-    height: 'calc(100% - 56px)',
+    height: 'calc(100vh - 56px)',
     marginTop: 56,
     [theme.breakpoints.up('sm')]: {
       height: 'calc(100% - 64px)',

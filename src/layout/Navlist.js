@@ -3,25 +3,17 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import ListSubheader from 'material-ui/List/ListSubheader';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import Collapse from 'material-ui/transitions/Collapse';
-import InboxIcon from 'material-ui-icons/MoveToInbox';
-import DraftsIcon from 'material-ui-icons/Drafts';
-import SendIcon from 'material-ui-icons/Send';
-import ExpandLess from 'material-ui-icons/ExpandLess';
-import ExpandMore from 'material-ui-icons/ExpandMore';
-import StarBorder from 'material-ui-icons/StarBorder';
-import Divider from 'material-ui/Divider'
 import { Link } from 'react-router-dom'
+
+import PeopleIcon from 'material-ui-icons/People'
+import WorkIcon from 'material-ui-icons/Work'
 
 const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
     background: theme.palette.background.paper,
-  },
-  nested: {
-    paddingLeft: theme.spacing.unit * 4,
-  },
+  }
 });
 
 class NavList extends React.Component {
@@ -30,17 +22,17 @@ class NavList extends React.Component {
 
     return (
         <List className={classes.root} subheader={<ListSubheader>navigation</ListSubheader>}>
-            <ListItem button component={Link} to='/employees'>
+            <ListItem button component={Link} to='/staffs'>
             <ListItemIcon>
-                <SendIcon />
+                <PeopleIcon />
             </ListItemIcon>
-            <ListItemText inset primary="Employees" />
+            <ListItemText inset primary="Staffs" />
             </ListItem>
-            <ListItem button component={Link} to='/positions'>
+            <ListItem button component={Link} to='/roles'>
             <ListItemIcon>
-                <DraftsIcon />
+                <WorkIcon />
             </ListItemIcon>
-            <ListItemText inset primary="Positions" />
+            <ListItemText inset primary="Role" />
             </ListItem>
         </List>
 

@@ -11,6 +11,8 @@ import thunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
 
 import { rootReducers as reducers } from './reducers' 
+
+import { preloadInitialData as preload } from '../preload/preloadDataHOC'
 import Layout from '../layout/Layout'
 
 // using redux-devtools for easy redux debugging
@@ -51,7 +53,7 @@ export const Routes = () => {
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <div>
-          <Route path="/" component={Layout}/>
+          <Route path="/" component={preload(Layout)}/>
         </div>
       </ConnectedRouter>
     </Provider>

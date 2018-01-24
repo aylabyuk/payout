@@ -1,7 +1,6 @@
 import React from 'react';
 import Hidden from 'material-ui/Hidden';
 import Drawer from 'material-ui/Drawer';
-import List from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 
 import NavList from './Navlist'
