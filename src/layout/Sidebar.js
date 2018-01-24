@@ -16,7 +16,7 @@ export default ({ classes, theme, open, handleDrawer }) => {
 
     return (
         <div>
-            <Hidden mdUp>
+            <Hidden lgUp>
                 <Drawer
                 type="temporary"
                 anchor={theme.direction === 'rtl' ? 'right' : 'left'}
@@ -32,7 +32,7 @@ export default ({ classes, theme, open, handleDrawer }) => {
                 {drawer}
                 </Drawer>
             </Hidden>
-            <Hidden smDown implementation="css">
+            <Hidden mdDown implementation="css">
                 <Drawer
                 type="permanent"
                 open

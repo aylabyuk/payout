@@ -9,6 +9,7 @@ import { routerReducer, ConnectedRouter, routerMiddleware } from 'react-router-r
 import { reducer as formReducer } from 'redux-form'
 import thunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
+import { responsiveStoreEnhancer, responsiveStateReducer } from 'redux-responsive'
 
 import { rootReducers as reducers } from './reducers' 
 
@@ -43,9 +44,14 @@ const store = createStore(
   persistCombineReducers(config, {
     router: routerReducer,
     ...reducers,
-    form: formReducer
+    form: formReducer,
+    broser: responsiveStateReducer
+
   }),
-  enhancer
+  compose(
+    responsiveStoreEnhancer,
+    enhancer
+  )
 )
 
 export const Routes = () => {

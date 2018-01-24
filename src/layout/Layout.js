@@ -27,19 +27,19 @@ const styles = theme => ({
   appBar: {
     position: 'absolute',
     marginLeft: drawerWidth,
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       width: `calc(100% - ${drawerWidth}px)`,
     },
   },
   navIconHide: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       display: 'none',
     },
   },
   drawerHeader: theme.mixins.toolbar,
   drawerPaper: {
     width: 250,
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       width: drawerWidth,
       position: 'relative',
       height: '100%',
@@ -51,7 +51,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
     height: 'calc(100vh - 56px)',
     marginTop: 56,
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
       height: 'calc(100% - 64px)',
       marginTop: 64,
     },
