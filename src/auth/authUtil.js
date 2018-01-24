@@ -43,6 +43,7 @@ export function tryLogin(data, mutate) {
         window.location.reload();
     }).catch((msg) => {
         console.log(msg)
+        alert('Login Failed ' + msg)
     })
 }
 

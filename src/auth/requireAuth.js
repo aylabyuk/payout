@@ -46,6 +46,7 @@ export function requireAuthentication(Component) {
             }
         }).catch((err) => {
             console.log(err)
+            this.setState({ redirectToLogin: true })
         })
     }
 

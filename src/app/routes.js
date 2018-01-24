@@ -61,7 +61,7 @@ export const Routes = () => {
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <div>
-          <Route exact path="/" component={isAuth(preload(Layout))}/>
+          <Route exact path="/" component={isAuth(Layout)}/>
           <Route path="/auth" component={Auth}/>
         </div>
       </ConnectedRouter>
