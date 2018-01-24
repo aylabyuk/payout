@@ -14,7 +14,7 @@ import { responsiveStoreEnhancer, responsiveStateReducer } from 'redux-responsiv
 import { rootReducers as reducers } from './reducers' 
 import { requireAuthentication as isAuth } from '../auth/requireAuth'
 
-import { preloadInitialData as preload } from '../preload/preloadDataHOC'
+import Preloader from '../preload/Preloader'
 import Layout from '../layout/Layout'
 import Auth from '../auth/Auth'
 
@@ -61,7 +61,8 @@ export const Routes = () => {
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <div>
-          <Route exact path="/" component={isAuth(Layout)}/>
+          <Route exact path="/" component={isAuth(Preloader)}/>
+          <Route path="/dash" component={isAuth(Layout)}/>
           <Route path="/auth" component={Auth}/>
         </div>
       </ConnectedRouter>

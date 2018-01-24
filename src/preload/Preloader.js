@@ -1,11 +1,12 @@
 import React from 'react';  
+import { Redirect } from 'react-router-dom'
 
 //graphql
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo'
 
 // query for the logged in user
-export let preloadQuery = gql`query {
+const preloadQuery = gql`query {
     roles {
         id
         name
@@ -14,11 +15,8 @@ export let preloadQuery = gql`query {
     }
 }`;
 
-export function preloadInitialData(Component) {
-
-  class ComponentWithInitialData extends React.Component {
+class Preloader extends React.Component {
     render() {
-        
         if(this.props.preloadedData.loading) {
             return(
                 <div className="loaderContainer">
@@ -29,11 +27,10 @@ export function preloadInitialData(Component) {
                 </div>
             )
         } else {
-            return(<Component {...this.props} />)
+            return(<Redirect to='/dash' />)
         }
 
     }
-  }
-
-  return graphql(preloadQuery, { name: 'preloadedData' })(ComponentWithInitialData)
 }
+
+export default graphql(preloadQuery, { name: 'preloadedData' })(Preloader)
