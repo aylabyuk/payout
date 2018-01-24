@@ -45,7 +45,7 @@ const store = createStore(
     router: routerReducer,
     ...reducers,
     form: formReducer,
-    broser: responsiveStateReducer
+    browser: responsiveStateReducer
 
   }),
   compose(

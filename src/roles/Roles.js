@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react'
+import { masterDetailComp } from '../masterDetail/masterDetailHOC'
+import RolesMaster from './RolesMaster'
+import RolesDetails from './RolesDetails'
 
-class Roles extends Component {
+class Roles extends React.Component {
     render() {
-        return (
-            <div>
-                Roles Page
-            </div>
-        );
+        const CombinedComponents = masterDetailComp(RolesMaster, RolesDetails)
+
+        return <CombinedComponents />
     }
 }
 

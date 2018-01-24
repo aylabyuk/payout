@@ -13,7 +13,6 @@ class Content extends Component {
                 <Route path='/staffs' component={Staffs} />
                 <Route path='/roles' component={Roles} />
 
-                <Typography noWrap>{'This text is rendered from the main Content component'}</Typography>
             </main>
         );
     }

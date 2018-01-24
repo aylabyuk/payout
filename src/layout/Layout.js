@@ -13,13 +13,11 @@ const drawerWidth = 240;
 const styles = theme => ({
   root: {
     width: '100%',
-    height: 'calc(100vh - 56px)',
     marginTop: 0,
     zIndex: 1,
     overflow: 'hidden',
   },
   appFrame: {
-    position: 'relative',
     display: 'flex',
     width: '100%',
     height: '100%',
@@ -42,17 +40,15 @@ const styles = theme => ({
     [theme.breakpoints.up('lg')]: {
       width: drawerWidth,
       position: 'relative',
-      height: '100%',
+      height: '100vh',
     },
   },
   content: {
     backgroundColor: theme.palette.background.default,
     width: '100%',
-    padding: theme.spacing.unit * 3,
-    height: 'calc(100vh - 56px)',
+    padding: 0,
     marginTop: 56,
     [theme.breakpoints.up('md')]: {
-      height: 'calc(100% - 64px)',
       marginTop: 64,
     },
   },
@@ -70,9 +66,9 @@ class Layout extends React.Component {
         return (
         <div className={classes.root}>
             <div className={classes.appFrame}>
-            <Header classes={classes} handleDrawer={this.handleDrawerToggle}/>
-            <Sidebar classes={classes} theme={theme} open={isSideBarOpen}  handleDrawer={this.handleDrawerToggle}/>
-            <Content classes={classes}/>
+              <Header classes={classes} handleDrawer={this.handleDrawerToggle}/>
+              <Sidebar classes={classes} theme={theme} open={isSideBarOpen}  handleDrawer={this.handleDrawerToggle}/>
+              <Content classes={classes}/>
             </div>
         </div>
         );

@@ -32,7 +32,7 @@ class NavList extends React.Component {
             <ListItemIcon>
                 <WorkIcon />
             </ListItemIcon>
-            <ListItemText inset primary="Role" />
+            <ListItemText inset primary="Roles" />
             </ListItem>
         </List>
 
