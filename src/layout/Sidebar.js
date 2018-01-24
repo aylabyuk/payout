@@ -4,12 +4,14 @@ import Drawer from 'material-ui/Drawer';
 import List from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 
+import NavList from './Navlist'
+
 export default ({ classes, theme, open, handleDrawer }) => {
     const drawer = (
         <div>
             <div className={classes.drawerHeader} />
             <Divider />
-            <List>test</List>
+            <NavList />
         </div>
     );
 

@@ -51,7 +51,7 @@ export const Routes = () => {
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <div>
-          <Route exact path="/" component={Layout}/>
+          <Route path="/" component={Layout}/>
         </div>
       </ConnectedRouter>
     </Provider>
