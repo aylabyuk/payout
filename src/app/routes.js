@@ -15,6 +15,7 @@ import { rootReducers as reducers } from './reducers'
 
 import { preloadInitialData as preload } from '../preload/preloadDataHOC'
 import Layout from '../layout/Layout'
+import Auth from '../auth/Auth'
 
 // using redux-devtools for easy redux debugging
 const composeEnhancers =
@@ -60,6 +61,7 @@ export const Routes = () => {
       <ConnectedRouter history={history}>
         <div>
           <Route path="/" component={preload(Layout)}/>
+          <Route path="/auth" component={Auth}/>
         </div>
       </ConnectedRouter>
     </Provider>
