@@ -1,6 +1,7 @@
 import React from 'react'
 import { TextField } from 'material-ui'
 import gql from 'graphql-tag';
+// import { history } from '../app/routes'
 
 export const renderTextField = ({
     input,
@@ -40,6 +41,7 @@ export function tryLogin(data, mutate) {
     }).then((d) => {
         // successfully logged in
         setLocalStorageTokens(d.data.login.token)
+        // history.push('/dash/staffs')
         window.location.reload();
     }).catch((msg) => {
         console.log(msg)

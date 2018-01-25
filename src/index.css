@@ -86,26 +86,26 @@ body {
 /* scrollbars */
 
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 11px;
+  height: 11px;
 }
 ::-webkit-scrollbar-button {
   width: 0px;
   height: 0px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #727272;
+  background: #c4c4c4;
   border: 0px none #ffffff;
   border-radius: 0px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #464646;
+  background: #555555;
 }
 ::-webkit-scrollbar-thumb:active {
-  background: #464646;
+  background: #555555;
 }
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: #ffffff00;
   border: 0px none #ffffff;
   border-radius: 0px;
 }

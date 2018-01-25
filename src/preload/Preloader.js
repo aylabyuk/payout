@@ -27,7 +27,7 @@ class Preloader extends React.Component {
                 </div>
             )
         } else {
-            return(<Redirect to='/dash' />)
+            return(<Redirect to='/dash/staffs' />)
         }
 
     }

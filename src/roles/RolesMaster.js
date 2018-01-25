@@ -7,6 +7,7 @@ import FolderIcon from 'material-ui-icons/Folder';
 import { List as RVList, AutoSizer } from 'react-virtualized'
 import gql from 'graphql-tag'
 import { client } from '../index'
+import Typography from 'material-ui/Typography'
 
 const styles = theme => ({
   root: {
@@ -51,7 +52,9 @@ class RolesMaster extends React.Component {
                      <Avatar>
                          <FolderIcon />
                      </Avatar>
-                     <ListItemText primary={role.name} secondary="Jan 9, 2016" />
+                     <ListItemText disableTypography primary={role.name} secondary={
+                         <Typography noWrap>{role.description}</Typography>
+                     }/>
                  </ListItem>
             </div>
         )
@@ -70,7 +73,7 @@ class RolesMaster extends React.Component {
                             height={height}
                             width={width}
                             noRowsRenderer={this._noRowsRenderer}
-                            rowHeight={75}
+                            rowHeight={500}
                             rowRenderer={this._rowRenderer}
                             rowCount={roles.length}
                         />
