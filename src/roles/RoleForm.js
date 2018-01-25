@@ -12,15 +12,22 @@ import Dialog, {
 import { connect } from 'react-redux'
 import * as actions from './rolesActions'
 import { Field, reduxForm } from 'redux-form'
-import { renderTextField } from './rolesUtil'
+import { renderTextField, executeMutation, createRoleMutation, validateForm } from './rolesUtil'
+import { graphql } from 'react-apollo'
 
 class RoleForm extends React.Component {
   handleClose = () => {
     this.props.toggleCreateRole()
   };
 
+  handleFormSubmit = (data, mutation) => {
+    executeMutation(data, mutation).then(() => {
+      this.handleClose()
+    })
+  }
+
   render() {
-    const { fullScreen, open } = this.props;
+    const { fullScreen, open, handleSubmit, createRole } = this.props;
 
     return (
       <div>
@@ -30,7 +37,7 @@ class RoleForm extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="responsive-dialog-title"
         >
-          <DialogTitle id="responsive-dialog-title">{"Create a new role"}</DialogTitle>
+          <DialogTitle id="responsive-dialog-title">{"Create Role"}</DialogTitle>
           <DialogContent>
             <Field name='name' label='Name' component={renderTextField} fullWidth={true}/>
             <Field name='description' label='Description' component={renderTextField} custom={{
@@ -43,7 +50,7 @@ class RoleForm extends React.Component {
             }} startAdornment={ <InputAdornment position="start">₱</InputAdornment> } fullWidth={false}/>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={ handleSubmit(data => this.handleFormSubmit(data, createRole)) } color="primary">
               Save
             </Button>
             <Button onClick={this.handleClose} color="primary" autoFocus>
@@ -68,6 +75,9 @@ const mapstatetoprops = (state) => {
 
 const withForm = reduxForm({
   form: 'role',
+  validate: validateForm,
+  destroyOnUnmount: false
 })(withMobileDialog()(RoleForm))
 
-export default connect(mapstatetoprops, actions)(withForm)
+const comp = connect(mapstatetoprops, actions)(withForm)
+export default graphql(createRoleMutation, { name: 'createRole' })(comp)
