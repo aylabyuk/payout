@@ -4,9 +4,9 @@ import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Button from 'material-ui/Button'
 import Avatar from 'material-ui/Avatar';
-import FolderIcon from 'material-ui-icons/Folder';
 import { List as RVList, AutoSizer } from 'react-virtualized'
 import AddIcon from 'material-ui-icons/Add';
+import Tooltip from 'material-ui/Tooltip'
 import Typography from 'material-ui/Typography'
 import { Link } from 'react-router-dom'
 import * as actions from './rolesActions' 
@@ -50,7 +50,7 @@ class RolesMaster extends React.Component {
             <div key={key} style={style} >
                 <ListItem button onClick={() => this.handleClick(`/dash/roles/${role.name}`)}>
                      <Avatar>
-                         <FolderIcon />
+                         {role.name.substring(0,2).toUpperCase()}
                      </Avatar>
                      <ListItemText disableTypography primary={role.name} secondary={
                          <Typography noWrap>{role.description}</Typography>
@@ -84,9 +84,11 @@ class RolesMaster extends React.Component {
                         />
                     )}
                 </AutoSizer>
-                <Button fab color="secondary" aria-label="add" className={classes.fab}>
-                    <AddIcon />
-                </Button>
+                <Tooltip title='Create Role'>
+                    <Button fab color="secondary" aria-label="add" className={classes.fab}>
+                        <AddIcon />
+                    </Button>
+                </Tooltip>
             </div>
         )
     }
