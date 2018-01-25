@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemText } from 'material-ui/List';
+import Button from 'material-ui/Button'
 import Avatar from 'material-ui/Avatar';
 import FolderIcon from 'material-ui-icons/Folder';
 import { List as RVList, AutoSizer } from 'react-virtualized'
+import AddIcon from 'material-ui-icons/Add';
 import Typography from 'material-ui/Typography'
 import { Link } from 'react-router-dom'
 import * as actions from './rolesActions' 
@@ -19,6 +21,11 @@ const styles = theme => ({
     minHeight: 'calc(100vh - 64px)',
     backgroundColor: theme.palette.background.paper
   },
+  fab: {
+    position: 'absolute',
+    bottom: '30px',
+    right: '30px'
+  }
 });
 
 class RolesMaster extends React.Component {
@@ -77,6 +84,9 @@ class RolesMaster extends React.Component {
                         />
                     )}
                 </AutoSizer>
+                <Button fab color="secondary" aria-label="add" className={classes.fab}>
+                    <AddIcon />
+                </Button>
             </div>
         )
     }
