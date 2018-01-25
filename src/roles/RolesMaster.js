@@ -9,6 +9,7 @@ import Typography from 'material-ui/Typography'
 import { Link } from 'react-router-dom'
 import * as actions from './rolesActions' 
 import { connect } from 'react-redux'
+import { history } from '../app/routes'
 
 const styles = theme => ({
   root: {
@@ -25,13 +26,22 @@ class RolesMaster extends React.Component {
         return <div ></div>;
     }
 
+    handleClick = (to) => {
+        setTimeout(() => {
+            this.props.toggleDetailsMobile()
+            history.push(to)
+        }
+        , 200)
+        
+    }
+
     _rowRenderer = ({index, isScrolling, key, style }) => {
         const { roles } = this.props
         let role = roles[index]
 
         return(
             <div key={key} style={style} >
-                <ListItem button component={Link} to={`/dash/roles/${role.name}`}>
+                <ListItem button onClick={() => this.handleClick(`/dash/roles/${role.name}`)}>
                      <Avatar>
                          <FolderIcon />
                      </Avatar>
@@ -59,7 +69,7 @@ class RolesMaster extends React.Component {
                             height={height}
                             width={width}
                             noRowsRenderer={this._noRowsRenderer}
-                            rowHeight={500}
+                            rowHeight={70}
                             rowRenderer={this._rowRenderer}
                             rowCount={roles.length}
                             onScroll={this._onScroll}
@@ -74,7 +84,8 @@ class RolesMaster extends React.Component {
 
 const mapstatetoprops = (state) => {
     return {
-        scrollTop: state.roles.scrollTop
+        scrollTop: state.roles.scrollTop,
+        browser: state.browser
     }
 }
 

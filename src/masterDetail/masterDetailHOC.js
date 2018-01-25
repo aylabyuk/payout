@@ -2,6 +2,7 @@ import React from 'react';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import { withStyles } from 'material-ui/styles';
+import { connect } from 'react-redux'
 
 const styles = theme => ({
     root: {
@@ -19,11 +20,11 @@ const styles = theme => ({
 });
   
 
-export function masterDetailComp(Master, Detail, props) {
+export function masterDetailComp(Master, Detail, DetailsMobile, props) {
 
   class MasterDetailComponent extends React.Component {
     render() {
-        const { classes } = this.props;
+        const { classes, browser } = this.props;
 
         return(
             <div className={classes.root}>
@@ -33,17 +34,33 @@ export function masterDetailComp(Master, Detail, props) {
                             <Master roles={props}/>
                         </div>
                     </Grid>
-                    <Grid item sm={8} xs={12}>
+                    { !browser.lessThan.medium && <Grid item sm={8} xs={12}>
                         <div className={classes.left}>
                             <Detail roles={props}/>
                         </div>
-                    </Grid>
+                    </Grid>}
                 </Grid>
+
+            { browser.lessThan.medium && 
+                <DetailsMobile >
+                    <div style={{ padding: '14px' }}>
+                        <Detail roles={props} />
+                    </div>
+                </DetailsMobile >
+            }
+
             </div>
         )
 
     }
   }
 
-  return withStyles(styles)(MasterDetailComponent)
+  const mapstatetoprops = (state) => {
+      return {
+          browser: state.browser
+      }
+  }
+
+  const comp = withStyles(styles)(MasterDetailComponent)
+  return connect(mapstatetoprops, null)(comp)
 }

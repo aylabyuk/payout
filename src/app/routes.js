@@ -9,7 +9,7 @@ import { routerReducer, ConnectedRouter, routerMiddleware } from 'react-router-r
 import { reducer as formReducer } from 'redux-form'
 import thunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
-import { responsiveStoreEnhancer, responsiveStateReducer } from 'redux-responsive'
+import { responsiveStoreEnhancer, createResponsiveStateReducer } from 'redux-responsive'
 
 import { rootReducers as reducers } from './reducers' 
 import { requireAuthentication as isAuth } from '../auth/requireAuth'
@@ -47,8 +47,13 @@ const store = createStore(
     router: routerReducer,
     ...reducers,
     form: formReducer,
-    browser: responsiveStateReducer
-
+    browser: createResponsiveStateReducer({
+      extraSmall: 0,
+      small: 600,
+      medium: 960,
+      large: 1280,
+      extraLarge: 1920,
+    })
   }),
   compose(
     responsiveStoreEnhancer,

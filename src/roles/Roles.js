@@ -2,6 +2,7 @@ import React from 'react'
 import { masterDetailComp } from '../masterDetail/masterDetailHOC'
 import RolesMaster from './RolesMaster'
 import RolesDetails from './RolesDetails'
+import RolesDetailsMobile from './RolesDetailsMobile'
 
 import gql from 'graphql-tag'
 import { client } from '../index'
@@ -25,7 +26,7 @@ class Roles extends React.Component {
     }
 
     render() {
-        const CombinedComponents = masterDetailComp(RolesMaster, RolesDetails, this.state.roles)
+        const CombinedComponents = masterDetailComp(RolesMaster, RolesDetails, RolesDetailsMobile, this.state.roles)
 
         return <CombinedComponents />
     }
