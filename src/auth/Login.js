@@ -3,6 +3,10 @@ import { Field, reduxForm } from 'redux-form'
 import { graphql } from 'react-apollo';
 import { renderTextField, tryLogin, loginQuery } from './authUtil'
 import { validateLogin } from './authValidator'
+import { InputAdornment } from 'material-ui/Input'
+import IconButton from 'material-ui/IconButton'
+import Visibility from 'material-ui-icons/Visibility'
+import VisibilityOff from 'material-ui-icons/VisibilityOff'
 
 import {
     Typography,
@@ -39,6 +43,17 @@ import {
     })
 
 class Login extends Component  {
+    state = {
+        showPassword: false
+    }
+
+    handleMouseDownPassword = event => {
+        event.preventDefault();
+    };
+    
+    handleClickShowPasssword = () => {
+        this.setState({ showPassword: !this.state.showPassword });
+    };
 
     render() {
         const { registerFirst, classes, handleSubmit, login } = this.props;
@@ -47,10 +62,21 @@ class Login extends Component  {
             <div className={classes.root}>
                 <Grid container spacing={24} justify='center' alignContent='flex-end'>
                     <Grid item xs={12} sm={4} md={3} lg={2}>
-                        <Field name='email' label='email' placeholder='myemail123@gmail.com' component={renderTextField}/>
+                        <Field name='email' label='email' placeholder='myemail@gmail.com' component={renderTextField}/>
                     </Grid>
                     <Grid item xs={12} sm={4} md={3} lg={2}>
-                        <Field name='password' label='Password' placeholder='********'  type='password' component={renderTextField}/>
+                        <Field name='password' label='Password' placeholder='********'  type={this.state.showPassword ? 'text' : 'password'} 
+                            component={renderTextField}
+                            endAdornment={
+                                <InputAdornment position="end">
+                                  <IconButton
+                                    onClick={this.handleClickShowPasssword}
+                                    onMouseDown={this.handleMouseDownPassword}
+                                  >
+                                    {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                                  </IconButton>
+                                </InputAdornment>
+                            }/>
                     </Grid>
                     <Grid item xs={12} sm={2} md={1} lg={1}>
                         <Button raised className={classes.button} color='primary' onClick={handleSubmit(data => tryLogin(data, login)) }>login</Button>

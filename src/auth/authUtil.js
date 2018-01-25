@@ -8,6 +8,7 @@ export const renderTextField = ({
     label,
     placeholder,
     meta: { touched, error },
+    endAdornment,
     ...custom
 }) => (
     <TextField 
@@ -16,7 +17,7 @@ export const renderTextField = ({
         label={label}
         placeholder={placeholder}
         InputLabelProps={{ shrink: true }}
-        InputProps={{ style: {fontSize: 15}} }
+        InputProps={{ style: {fontSize: 20}, endAdornment } }
         error={touched && error ? true : false}
         helperText={touched && error ? error : ''}
         {...input}
