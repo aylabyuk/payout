@@ -11,10 +11,15 @@ const styles = theme => ({
       padding: 0,
       height: 'calc(100vh - 64px)'
     },
+    left: {
+      padding: 50,
+      borderLeft: '1px solid rgba(0, 0, 0, 0.12)',
+      height: '100%'
+    }
 });
   
 
-export function masterDetailComp(Master, Detail) {
+export function masterDetailComp(Master, Detail, props) {
 
   class MasterDetailComponent extends React.Component {
     render() {
@@ -25,12 +30,12 @@ export function masterDetailComp(Master, Detail) {
                 <Grid container spacing={0}>
                     <Grid item sm={4} xs={12}>
                         <div className={classes.paper}>
-                            <Master />
+                            <Master roles={props}/>
                         </div>
                     </Grid>
                     <Grid item sm={8} xs={12}>
-                        <div className={classes.paper}>
-                            <Detail />
+                        <div className={classes.left}>
+                            <Detail roles={props}/>
                         </div>
                     </Grid>
                 </Grid>

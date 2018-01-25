@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 
 class RolesDetails extends Component {
     render() {
+        const { roles } = this.props
+
         return (
             <div>
-                details
+                {roles[0].name}
             </div>
         );
     }

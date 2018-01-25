@@ -5,9 +5,10 @@ import List, { ListItem, ListItemText } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import FolderIcon from 'material-ui-icons/Folder';
 import { List as RVList, AutoSizer } from 'react-virtualized'
-import gql from 'graphql-tag'
-import { client } from '../index'
 import Typography from 'material-ui/Typography'
+import { Link } from 'react-router-dom'
+import * as actions from './rolesActions' 
+import { connect } from 'react-redux'
 
 const styles = theme => ({
   root: {
@@ -15,40 +16,22 @@ const styles = theme => ({
     maxWidth: 1000,
     flex: 1,
     minHeight: 'calc(100vh - 64px)',
-    backgroundColor: theme.palette.background.paper,
-    borderRight: '1px solid rgba(0, 0, 0, 0.12)',
+    backgroundColor: theme.palette.background.paper
   },
 });
 
 class RolesMaster extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            roles: client.readQuery({
-                query: gql`
-                    {
-                        roles {
-                            id
-                            name
-                            description
-                            ratePerHour
-                        }
-                    }`
-            }).roles,
-        }
-    }
-
     _noRowsRenderer = () => {
         return <div ></div>;
     }
 
     _rowRenderer = ({index, isScrolling, key, style }) => {
-        const { roles } = this.state
+        const { roles } = this.props
         let role = roles[index]
 
         return(
             <div key={key} style={style} >
-                <ListItem button>
+                <ListItem button component={Link} to={`/dash/roles/${role.name}`}>
                      <Avatar>
                          <FolderIcon />
                      </Avatar>
@@ -60,9 +43,12 @@ class RolesMaster extends React.Component {
         )
     }
 
+    _onScroll = ({ clientHeight, scrollHeight, scrollTop }) => {
+        this.props.setScrollTop(scrollTop)
+    }
+
     render() {
-        const { classes } = this.props
-        const { roles } = this.state
+        const { classes, roles, scrollTop } = this.props
 
         return(
             <div className={classes.root}>
@@ -76,6 +62,8 @@ class RolesMaster extends React.Component {
                             rowHeight={500}
                             rowRenderer={this._rowRenderer}
                             rowCount={roles.length}
+                            onScroll={this._onScroll}
+                            scrollTop={scrollTop}
                         />
                     )}
                 </AutoSizer>
@@ -84,4 +72,11 @@ class RolesMaster extends React.Component {
     }
 }
 
-export default withStyles(styles)(RolesMaster);
+const mapstatetoprops = (state) => {
+    return {
+        scrollTop: state.roles.scrollTop
+    }
+}
+
+const comp = withStyles(styles)(RolesMaster);
+export default connect(mapstatetoprops, actions)(comp)
