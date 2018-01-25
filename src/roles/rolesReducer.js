@@ -1,6 +1,7 @@
 const initialState = {
     scrollTop: 0,
-    isDetailsMobileOpen: false
+    isDetailsMobileOpen: false,
+    isCreateRoleOpen: false
 }
 
 export const rolesReducer = (state = initialState , action) => {
@@ -14,6 +15,11 @@ export const rolesReducer = (state = initialState , action) => {
             return {
                 ...state,
                 isDetailsMobileOpen: !state.isDetailsMobileOpen
+            }
+        case 'TOGGLE_CREATE_ROLE':
+            return {
+                ...state,
+                isCreateRoleOpen: !state.isCreateRoleOpen
             }
         default:
             return state

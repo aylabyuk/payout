@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-import Typography from 'material-ui/Typography';
 
 import Staffs from '../staffs/Staffs'
 import Roles from '../roles/Roles'

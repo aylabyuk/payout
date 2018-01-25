@@ -1,17 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import List, { ListItem, ListItemText } from 'material-ui/List';
+import { ListItem, ListItemText } from 'material-ui/List';
 import Button from 'material-ui/Button'
 import Avatar from 'material-ui/Avatar';
 import { List as RVList, AutoSizer } from 'react-virtualized'
 import AddIcon from 'material-ui-icons/Add';
 import Tooltip from 'material-ui/Tooltip'
 import Typography from 'material-ui/Typography'
-import { Link } from 'react-router-dom'
 import * as actions from './rolesActions' 
 import { connect } from 'react-redux'
 import { history } from '../app/routes'
+
+import RoleForm from './RoleForm'
 
 const styles = theme => ({
   root: {
@@ -40,6 +40,10 @@ class RolesMaster extends React.Component {
         }
         , 200)
         
+    }
+
+    handleCreate = () => {
+        this.props.toggleCreateRole()
     }
 
     _rowRenderer = ({index, isScrolling, key, style }) => {
@@ -85,10 +89,11 @@ class RolesMaster extends React.Component {
                     )}
                 </AutoSizer>
                 <Tooltip title='Create Role'>
-                    <Button fab color="secondary" aria-label="add" className={classes.fab}>
+                    <Button fab color="secondary" aria-label="add" className={classes.fab} onClick={this.handleCreate}>
                         <AddIcon />
                     </Button>
                 </Tooltip>
+                <RoleForm />
             </div>
         )
     }

@@ -59,7 +59,12 @@ export function requireAuthentication(Component) {
             <div>
             {this.state.isAuthenticated === true
                 ? <Component {...this.props} me={this.state.me} />
-                : null
+                :   <div className="loaderContainer">
+                        <div className="loader">
+                            <div className="one"></div>
+                            <div className="two"></div>
+                        </div>
+                    </div>
             }
             </div>
         )

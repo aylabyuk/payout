@@ -6,3 +6,7 @@ export const setScrollTop = (num) => ({
 export const toggleDetailsMobile = () => ({
     type: 'TOGGLE_DETAILSMOBILE',
 })
+
+export const toggleCreateRole = () => ({
+    type: 'TOGGLE_CREATE_ROLE'
+})

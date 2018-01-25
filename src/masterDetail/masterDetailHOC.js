@@ -1,6 +1,5 @@
 import React from 'react';  
 import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
 import { withStyles } from 'material-ui/styles';
 import { connect } from 'react-redux'
 
