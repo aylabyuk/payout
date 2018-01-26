@@ -42,12 +42,10 @@ class RolesMaster extends React.Component {
                     setRoleInView(role)
                     toggleDetailsMobile()
                     setEditMode(false)
-                    history.push(`/dash/roles/${role.name}`)
                 }
             } else {
                 setRoleInView(role)
                 toggleDetailsMobile()
-                history.push(`/dash/roles/${role.name}`)
             }
         }
         , 200)
@@ -64,7 +62,9 @@ class RolesMaster extends React.Component {
 
         return(
             <div key={key} style={{...style, fontWeight: roleInView && roleInView.id === role.id ? 'bold' : 'normal' }} >
-                <ListItem button onClick={() => this.handleClick(role)} >
+                <ListItem button onClick={() => this.handleClick(role)} onAnimationEnd={() => {
+                    history.push(`/dash/roles/${role.name}`)
+                }}>
                      <Avatar>
                          {role.name.substring(0,2).toUpperCase()}
                      </Avatar>
