@@ -13,10 +13,10 @@ export const rolesReducer = (state = initialState , action) => {
                 ...state,
                 scrollTop: action.payload
             }
-        case 'TOGGLE_DETAILSMOBILE':
+        case 'SET_DETAILSMOBILE':
             return {
                 ...state,
-                isDetailsMobileOpen: !state.isDetailsMobileOpen
+                isDetailsMobileOpen: action.payload
             }
         case 'TOGGLE_CREATE_ROLE':
             return {

@@ -3,8 +3,9 @@ export const setScrollTop = (num) => ({
     payload: num
 })
 
-export const toggleDetailsMobile = () => ({
-    type: 'TOGGLE_DETAILSMOBILE',
+export const setDetailsMobile = (bool) => ({
+    type: 'SET_DETAILSMOBILE',
+    payload: bool
 })
 
 export const toggleCreateRole = () => ({

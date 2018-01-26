@@ -44,7 +44,8 @@ class RolesDetails extends Component {
 
 const mapstatetoprops = (state) => {
     return {
-        isEditMode: state.roles.isEditMode
+        isEditMode: state.roles.isEditMode,
+        role: state.roles.roleInView
     }
 }
 

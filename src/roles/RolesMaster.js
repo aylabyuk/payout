@@ -35,21 +35,14 @@ class RolesMaster extends React.Component {
 
     handleClick = (role) => {
         const { setRoleInView, toggleDetailsMobile, isEditMode, setEditMode } = this.props
-
-        setTimeout(() => {
             if(isEditMode) {
                 if(window.confirm('All unsaved changes will be lost.')) {
                     setRoleInView(role)
-                    toggleDetailsMobile()
                     setEditMode(false)
                 }
             } else {
                 setRoleInView(role)
-                toggleDetailsMobile()
-            }
-        }
-        , 200)
-        
+            }  
     }
 
     handleCreate = () => {
@@ -57,12 +50,13 @@ class RolesMaster extends React.Component {
     }
 
     _rowRenderer = ({index, isScrolling, key, style }) => {
-        const { data: roles, roleInView } = this.props
+        const { data: roles, roleInView, setDetailsMobile } = this.props
         let role = roles[index]
 
         return(
             <div key={key} style={{...style, fontWeight: roleInView && roleInView.id === role.id ? 'bold' : 'normal' }} >
                 <ListItem button onClick={() => this.handleClick(role)} onAnimationEnd={() => {
+                    setDetailsMobile(true)
                     history.push(`/dash/roles/${role.name}`)
                 }}>
                      <Avatar>

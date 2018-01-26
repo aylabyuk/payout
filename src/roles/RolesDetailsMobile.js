@@ -31,10 +31,10 @@ class RolesDetailsMobile extends React.Component {
       if(window.confirm('All unsaved changes will be lost.')) {
           setEditMode(false)
           setRoleInView(null)
-          this.props.toggleDetailsMobile()
+          this.props.setDetailsMobile(false)
       }
     } else {
-      this.props.toggleDetailsMobile()
+      this.props.setDetailsMobile(false)
     }
 
   };
