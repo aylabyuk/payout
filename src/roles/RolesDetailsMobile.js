@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Dialog from 'material-ui/Dialog';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import IconButton from 'material-ui/IconButton';
-import Typography from 'material-ui/Typography';
-import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
-import EditIcon from 'material-ui-icons/Edit';
-import Slide from 'material-ui/transitions/Slide';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from 'material-ui/styles'
+import Dialog from 'material-ui/Dialog'
+import IconButton from 'material-ui/IconButton'
+import AppBar from 'material-ui/AppBar'
+import Toolbar from 'material-ui/Toolbar'
+import Typography from 'material-ui/Typography'
+import ChevronLeftIcon from 'material-ui-icons/ChevronLeft'
+import Slide from 'material-ui/transitions/Slide'
 import { connect } from 'react-redux'
 import * as actions from './rolesActions'
+import EditButton from './RoleUpdate'
 
 const styles = {
   appBar: {
@@ -49,9 +49,7 @@ class RolesDetailsMobile extends React.Component {
               <Typography type="title" color="inherit" className={classes.flex}>
                 Role Details
               </Typography>
-              <IconButton color="inherit" onClick={this.handleClose}>
-                <EditIcon />
-              </IconButton>
+              <EditButton />
             </Toolbar>
           </AppBar>
           {this.props.children}

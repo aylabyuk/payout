@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 import Typography from 'material-ui/Typography'
 import Divider from 'material-ui/Divider'
+import RoleUpdate from './RoleUpdate' 
 
 class RoleInfo extends Component {
     render() {
-        const { role } = this.props
+        const { role, onMobile } = this.props
         return (
             <div>
-                <Typography type='display1'>{role.name}</Typography>
+                <div style={{ display: 'flex' }}>
+                    <Typography style={{ flex: '2 1 auto' }} type='display1'>{role.name}</Typography>
+                    {!onMobile && <RoleUpdate style={{ alignSelf: 'flex-end' }}/>}
+                </div>
                 <Divider />
                 <br />
                 <Typography paragraph align='justify' type='subheading'>{role.description}</Typography>
@@ -22,14 +26,14 @@ class RoleInfo extends Component {
 
 class RolesDetails extends Component {
     render() {
-        const { roles } = this.props
+        const { roles, onMobile } = this.props
 
         return(
             roles.map((role) => {
-                return <Route key={role.id} path={`/dash/roles/${role.name}`} render={() => <RoleInfo role={role}/>} />
+                return <Route key={role.id} path={`/dash/roles/${role.name}`} render={() => <RoleInfo role={role} onMobile={onMobile}/>} />
             })
         ) 
     }
 }
 
-export default RolesDetails;
+export default RolesDetails

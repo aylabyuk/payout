@@ -3,6 +3,7 @@ import { masterDetailComp } from '../masterDetail/masterDetailHOC'
 import RolesMaster from './RolesMaster'
 import RolesDetails from './RolesDetails'
 import RolesDetailsMobile from './RolesDetailsMobile'
+import { existAlready, removeFromList, updateElement } from '../app/subscriptionUtilies'
 
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
@@ -49,23 +50,17 @@ class Roles extends React.Component {
                     return prev
                 }
 
-                function existAlready(id) {
-                    return prev.roles.some((el) => {
-                        return el.id === id
-                    })
-                }
-
-                function removeFromList(array, el) {
-                    return array.filter(e => e.id !== el.id)
-                }
-
-                if(data.rolesChanges.mutation === 'CREATED' && !existAlready(data.rolesChanges.node.id)) {
+                if(data.rolesChanges.mutation === 'CREATED' && !existAlready(prev.roles ,data.rolesChanges.node.id)) {
                     return {
                         roles: [...prev.roles, data.rolesChanges.node ]
                     }
                 } else if(data.rolesChanges.mutation === 'DELETED') {
                     return {
                         roles : removeFromList(prev.roles, data.rolesChanges.previousValues)
+                    }
+                } else if(data.rolesChanges.mutation === 'UPDATED') {
+                    return {
+                        roles : updateElement(prev.roles, data.rolesChanges.node)
                     }
                 }
 
