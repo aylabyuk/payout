@@ -10,3 +10,8 @@ export const toggleDetailsMobile = () => ({
 export const toggleCreateRole = () => ({
     type: 'TOGGLE_CREATE_ROLE'
 })
+
+export const setEditMode = (bool) => ({
+    type: 'SET_EDIT_MODE',
+    paload: bool
+})

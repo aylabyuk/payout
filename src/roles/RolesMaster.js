@@ -47,7 +47,7 @@ class RolesMaster extends React.Component {
     }
 
     _rowRenderer = ({index, isScrolling, key, style }) => {
-        const { roles } = this.props
+        const { data: roles } = this.props
         let role = roles[index]
 
         return(
@@ -69,7 +69,7 @@ class RolesMaster extends React.Component {
     }
 
     render() {
-        const { classes, roles, scrollTop } = this.props
+        const { classes, data: roles, scrollTop } = this.props
 
         return(
             <div className={classes.root}>

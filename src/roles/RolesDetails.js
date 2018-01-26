@@ -26,7 +26,7 @@ class RoleInfo extends Component {
 
 class RolesDetails extends Component {
     render() {
-        const { roles, onMobile } = this.props
+        const { data: roles, onMobile } = this.props
 
         return(
             roles.map((role) => {

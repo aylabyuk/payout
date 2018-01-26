@@ -1,7 +1,8 @@
 const initialState = {
     scrollTop: 0,
     isDetailsMobileOpen: false,
-    isCreateRoleOpen: false
+    isCreateRoleOpen: false,
+    isEditMode: false
 }
 
 export const rolesReducer = (state = initialState , action) => {
@@ -20,6 +21,11 @@ export const rolesReducer = (state = initialState , action) => {
             return {
                 ...state,
                 isCreateRoleOpen: !state.isCreateRoleOpen
+            }
+        case 'SET_EDIT_MODE':
+            return {
+                ...state,
+                isEditMode: action.payload
             }
         default:
             return state

@@ -30,12 +30,12 @@ export function masterDetailComp(Master, Detail, DetailsMobile, props) {
                 <Grid container spacing={0}>
                     <Grid item sm={4} xs={12}>
                         <div className={classes.paper}>
-                            <Master roles={props}/>
+                            <Master data={props}/>
                         </div>
                     </Grid>
                     { !browser.lessThan.medium && <Grid item sm={8} xs={12}>
                         <div className={classes.left}>
-                            <Detail roles={props} onMobile={false}/>
+                            <Detail data={props} onMobile={false}/>
                         </div>
                     </Grid>}
                 </Grid>
@@ -43,7 +43,7 @@ export function masterDetailComp(Master, Detail, DetailsMobile, props) {
             { browser.lessThan.medium && 
                 <DetailsMobile >
                     <div style={{ padding: '14px' }}>
-                        <Detail roles={props} onMobile={true}/>
+                        <Detail data={props} onMobile={true}/>
                     </div>
                 </DetailsMobile >
             }
