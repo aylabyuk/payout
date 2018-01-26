@@ -2,7 +2,7 @@ import React from 'react'
 
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
-import { persistCombineReducers } from 'redux-persist'
+import { persistCombineReducers, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import { Route } from 'react-router-dom'
 import { routerReducer, ConnectedRouter, routerMiddleware } from 'react-router-redux'
@@ -60,6 +60,8 @@ const store = createStore(
     enhancer
   )
 )
+
+let persistor = persistStore(store)
 
 export const Routes = () => {
   return(
