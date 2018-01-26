@@ -10,6 +10,11 @@ import * as actions from './rolesActions'
 class RoleInfo extends Component {
     render() {
         const { role, onMobile } = this.props
+
+        if(!role) {
+            return <div />
+        }
+
         return (
             <div>
                 <div style={{ display: 'flex' }}>
@@ -27,15 +32,21 @@ class RoleInfo extends Component {
     }
 }
 
+RoleInfo = connect( (state) => {
+    return { 
+        role: state.roles.roleInView,
+    }
+}, actions)(RoleInfo)
+
 class RolesDetails extends Component {
     render() {
-        const { data: roles, onMobile, isEditMode } = this.props
+        const { data: roles, role, onMobile, isEditMode } = this.props
 
         return(
-            roles.map((role) => {
-                return <Route key={role.id} path={`/dash/roles/${role.name}`} render={() => 
+            roles.map((r) => {
+                return <Route key={r.id} path={`/dash/roles/${r.name}`} render={() => 
                     isEditMode ? <RoleEditInfo role={role} onMobile={onMobile}/> : 
-                        <RoleInfo role={role} onMobile={onMobile}/> } 
+                        <RoleInfo onMobile={onMobile}/> } 
                 />
             })
         ) 
@@ -45,7 +56,6 @@ class RolesDetails extends Component {
 const mapstatetoprops = (state) => {
     return {
         isEditMode: state.roles.isEditMode,
-        role: state.roles.roleInView
     }
 }
 

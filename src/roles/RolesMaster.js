@@ -34,7 +34,7 @@ class RolesMaster extends React.Component {
     }
 
     handleClick = (role) => {
-        const { setRoleInView, toggleDetailsMobile, isEditMode, setEditMode } = this.props
+        const { setRoleInView, isEditMode, setEditMode } = this.props
             if(isEditMode) {
                 if(window.confirm('All unsaved changes will be lost.')) {
                     setRoleInView(role)

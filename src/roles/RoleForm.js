@@ -5,7 +5,6 @@ import { InputAdornment } from 'material-ui/Input'
 import Dialog, {
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   withMobileDialog,
 } from 'material-ui/Dialog';

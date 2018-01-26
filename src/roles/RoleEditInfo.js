@@ -1,6 +1,6 @@
 import React from 'react'
 import RoleUpdate from './RoleUpdate'
-import { renderTextField, executeMutation, createRoleMutation, validateForm } from './rolesUtil'
+import { renderTextField, validateForm } from './rolesUtil'
 import { Field, reduxForm } from 'redux-form'
 import { InputAdornment } from 'material-ui/Input'
 import { connect } from 'react-redux'
@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 class RoleEditInfo extends React.Component {
 
     render() {
-        const { role, onMobile } = this.props
+        const { onMobile } = this.props
         return (
             <form style={{ padding: '30px' }}>
                 <div style={{ display: 'flex' }}>

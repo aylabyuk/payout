@@ -4,9 +4,8 @@ import EditIcon from 'material-ui-icons/Edit'
 import Button from 'material-ui/Button'
 import { connect } from 'react-redux'
 import * as actions from './rolesActions'
-import { Prompt } from 'react-router-dom'
 
-class EditButton extends React.Component {
+class EditButton extends Component {
 
     handleClick() {
         this.props.setEditMode(true)
