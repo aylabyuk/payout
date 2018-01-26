@@ -3,7 +3,7 @@ import RoleUpdate from './RoleUpdate'
 import { renderTextField, executeMutation, createRoleMutation, validateForm } from './rolesUtil'
 import { Field, reduxForm } from 'redux-form'
 import { InputAdornment } from 'material-ui/Input'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
 class RoleEditInfo extends React.Component {
 

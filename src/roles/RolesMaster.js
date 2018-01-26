@@ -34,10 +34,21 @@ class RolesMaster extends React.Component {
     }
 
     handleClick = (role) => {
+        const { setRoleInView, toggleDetailsMobile, isEditMode, setEditMode } = this.props
+
         setTimeout(() => {
-            this.props.setRoleInView(role)
-            this.props.toggleDetailsMobile()
-            history.push(`/dash/roles/${role.name}`)
+            if(isEditMode) {
+                if(window.confirm('All unsaved changes will be lost.')) {
+                    setRoleInView(role)
+                    toggleDetailsMobile()
+                    setEditMode(false)
+                    history.push(`/dash/roles/${role.name}`)
+                }
+            } else {
+                setRoleInView(role)
+                toggleDetailsMobile()
+                history.push(`/dash/roles/${role.name}`)
+            }
         }
         , 200)
         
@@ -102,6 +113,7 @@ class RolesMaster extends React.Component {
 
 const mapstatetoprops = (state) => {
     return {
+        isEditMode: state.roles.isEditMode,
         roleInView: state.roles.roleInView,
         scrollTop: state.roles.scrollTop,
         browser: state.browser

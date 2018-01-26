@@ -11,6 +11,7 @@ import Slide from 'material-ui/transitions/Slide'
 import { connect } from 'react-redux'
 import * as actions from './rolesActions'
 import EditButton from './RoleUpdate'
+import { history } from '../app/routes'
 
 const styles = {
   appBar: {
@@ -21,15 +22,19 @@ const styles = {
   },
 };
 
-function Transition(props) {
-  return <Slide direction="left" {...props} />;
-}
-
 class RolesDetailsMobile extends React.Component {
 
   handleClose = () => {
+    
     this.props.toggleDetailsMobile()
   };
+
+  transition = (props) => {
+    return <Slide direction="left" {...props} onExited={() => {
+      history.push(`/dash/roles`)
+      this.props.setRoleInView(null)
+    }} />;
+  }
 
   render() {
     const { classes, open } = this.props;
@@ -39,7 +44,7 @@ class RolesDetailsMobile extends React.Component {
           fullScreen
           open={open}
           onClose={this.handleClose}
-          transition={Transition}
+          transition={this.transition}
         >
           <AppBar className={classes.appBar}>
             <Toolbar>
@@ -65,7 +70,7 @@ RolesDetailsMobile.propTypes = {
 
 const maspstatetoprops = (state) => {
   return {
-    open: state.roles.isDetailsMobileOpen
+    open: state.roles.isDetailsMobileOpen,
   }
 } 
 

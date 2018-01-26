@@ -4,6 +4,7 @@ import EditIcon from 'material-ui-icons/Edit'
 import Button from 'material-ui/Button'
 import { connect } from 'react-redux'
 import * as actions from './rolesActions'
+import { Prompt } from 'react-router-dom'
 
 class EditButton extends React.Component {
 
@@ -14,16 +15,16 @@ class EditButton extends React.Component {
     render() {
         const {isEditMode} = this.props
         return (
-        <div>
-            {isEditMode ? 
-                <Button raised color='secondary'>
-                    Save
-                </Button>
-                : <IconButton color="inherit" onClick={this.handleClick.bind(this)}>
-                    <EditIcon />
-                </IconButton>
-            }
-        </div>
+            <div>
+                {isEditMode ? 
+                    <Button raised color='secondary'>
+                        Save
+                    </Button>
+                    : <IconButton color="inherit" onClick={this.handleClick.bind(this)}>
+                        <EditIcon />
+                    </IconButton>
+                }
+            </div>
         );
     }
 }
