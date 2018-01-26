@@ -11,13 +11,22 @@ import { ApolloClient } from 'apollo-client'
 import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import apolloLogger from 'apollo-link-logger'
-import { setContext } from 'apollo-link-context';
+import { setContext } from 'apollo-link-context'
 import { persistCache } from 'apollo-cache-persist'
-import { onError } from 'apollo-link-error';
-import { ApolloLink } from 'apollo-link';
+import { onError } from 'apollo-link-error'
+import { ApolloLink, split } from 'apollo-link'
+import { WebSocketLink } from 'apollo-link-ws'
+import { getMainDefinition } from 'apollo-utilities'
 
 const httpLink = createHttpLink({
     uri: 'http://192.168.0.110:4000'
+})
+
+const wsLink = new WebSocketLink({
+    uri: 'ws://192.168.0.110:4000/',
+    options: {
+        reconnect: true
+    }
 })
 
 const authLink = setContext((_, { headers }) => {
@@ -43,14 +52,23 @@ const errorLink = onError(({ networkError, graphQLErrors }) => {
     if (networkError) console.log(`[Network error]: ${networkError}`);
 });
 
-const cache = new InMemoryCache()
+const splitLink = split(
+    ({ query }) => {
+        const { kind, operation } = getMainDefinition(query);
+        return kind === 'OperationDefinition' && operation === 'subscription';
+    },
+    wsLink,
+    httpLink
+)
+
 const link = ApolloLink.from([
     apolloLogger,
     authLink,
     errorLink,
-    httpLink
+    splitLink
 ])
 
+const cache = new InMemoryCache()
 persistCache({
     cache,
     storage: window.localStorage

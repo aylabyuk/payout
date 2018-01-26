@@ -4,32 +4,65 @@ import RolesMaster from './RolesMaster'
 import RolesDetails from './RolesDetails'
 import RolesDetailsMobile from './RolesDetailsMobile'
 
+import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
-import { client } from '../index'
+
+const ROLE_QUERY = gql`
+    query {
+        roles {
+            id
+            name
+            description
+            ratePerHour
+        }
+    }
+`
+
+const ROLES_CHANGES_SUBSCRIPTION = gql`
+    subscription {
+        rolesChanges {
+          mutation
+          node {
+            id
+            name
+            description
+            ratePerHour
+          }
+          updatedFields
+          previousValues {
+            id
+            name
+            description
+            ratePerHour
+          }
+        }
+      }
+`
 
 class Roles extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            roles: client.readQuery({
-                query: gql`
-                    {
-                        roles {
-                            id
-                            name
-                            description
-                            ratePerHour
-                        }
-                    }`
-            }).roles,
-        }
+    componentWillMount() {
+        this.props.data.subscribeToMore({
+            document: ROLES_CHANGES_SUBSCRIPTION,
+            updateQuery: (prev, { subscriptionData }) => {
+                if(!subscriptionData.data) {
+                    return prev
+                }
+
+                return 0
+            }
+        })
     }
 
     render() {
-        const CombinedComponents = masterDetailComp(RolesMaster, RolesDetails, RolesDetailsMobile, this.state.roles)
+
+        console.log(this.props)
+
+        const CombinedComponents = masterDetailComp(RolesMaster, RolesDetails, RolesDetailsMobile, this.props.data.roles)
 
         return <CombinedComponents />
     }
 }
 
-export default Roles;
+const withData = graphql(ROLE_QUERY)(Roles)
+
+export default withData;
