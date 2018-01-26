@@ -50,11 +50,12 @@ class RolesMaster extends React.Component {
     }
 
     _rowRenderer = ({index, isScrolling, key, style }) => {
-        const { data: roles, roleInView, setDetailsMobile } = this.props
+        const { data: roles, roleInView, setDetailsMobile, path } = this.props
         let role = roles[index]
 
         return(
-            <div key={key} style={{...style, fontWeight: roleInView && roleInView.id === role.id ? 'bold' : 'normal' }} >
+            <div key={key} 
+                style={{...style, fontWeight: roleInView && roleInView.id === role.id && path !== '/dash/roles' ? 'bold' : 'normal' }} >
                 <ListItem button onClick={() => this.handleClick(role)} onAnimationEnd={() => {
                     setDetailsMobile(true)
                     history.push(`/dash/roles/${role.name}`)
@@ -110,6 +111,7 @@ const mapstatetoprops = (state) => {
         isEditMode: state.roles.isEditMode,
         roleInView: state.roles.roleInView,
         scrollTop: state.roles.scrollTop,
+        path: state.router.location.pathname,
         browser: state.browser
     }
 }

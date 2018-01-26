@@ -11,7 +11,6 @@ class Content extends Component {
             <main className={classes.content}>
                 <Route path='/dash/staffs' component={Staffs} />
                 <Route path='/dash/roles' component={Roles} />
-
             </main>
         );
     }

@@ -5,7 +5,7 @@ import Divider from 'material-ui/Divider'
 import RoleUpdate from './RoleUpdate' 
 import RoleEditInfo from './RoleEditInfo'
 import { connect } from 'react-redux'
-import * as actions from './rolesActions'
+import * as actions from './rolesActions' 
 
 class RoleInfo extends Component {
     render() {
@@ -37,6 +37,7 @@ RoleInfo = connect( (state) => {
         role: state.roles.roleInView,
     }
 }, actions)(RoleInfo)
+
 
 class RolesDetails extends Component {
     render() {
