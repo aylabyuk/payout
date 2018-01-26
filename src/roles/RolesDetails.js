@@ -3,6 +3,9 @@ import { Route } from 'react-router-dom'
 import Typography from 'material-ui/Typography'
 import Divider from 'material-ui/Divider'
 import RoleUpdate from './RoleUpdate' 
+import RoleEditInfo from './RoleEditInfo'
+import { connect } from 'react-redux'
+import * as actions from './rolesActions'
 
 class RoleInfo extends Component {
     render() {
@@ -26,14 +29,23 @@ class RoleInfo extends Component {
 
 class RolesDetails extends Component {
     render() {
-        const { data: roles, onMobile } = this.props
+        const { data: roles, onMobile, isEditMode } = this.props
 
         return(
             roles.map((role) => {
-                return <Route key={role.id} path={`/dash/roles/${role.name}`} render={() => <RoleInfo role={role} onMobile={onMobile}/>} />
+                return <Route key={role.id} path={`/dash/roles/${role.name}`} render={() => 
+                    isEditMode ? <RoleEditInfo role={role} onMobile={onMobile}/> : 
+                        <RoleInfo role={role} onMobile={onMobile}/> } 
+                />
             })
         ) 
     }
 }
 
-export default RolesDetails
+const mapstatetoprops = (state) => {
+    return {
+        isEditMode: state.roles.isEditMode
+    }
+}
+
+export default connect(mapstatetoprops, actions)(RolesDetails)

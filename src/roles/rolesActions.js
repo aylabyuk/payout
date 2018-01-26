@@ -13,5 +13,10 @@ export const toggleCreateRole = () => ({
 
 export const setEditMode = (bool) => ({
     type: 'SET_EDIT_MODE',
-    paload: bool
+    payload: bool
+})
+
+export const setRoleInView = (role) => ({
+    type: 'SET_ROLE_INVIEW',
+    payload: role
 })

@@ -33,10 +33,11 @@ class RolesMaster extends React.Component {
         return <div ></div>;
     }
 
-    handleClick = (to) => {
+    handleClick = (role) => {
         setTimeout(() => {
+            this.props.setRoleInView(role)
             this.props.toggleDetailsMobile()
-            history.push(to)
+            history.push(`/dash/roles/${role.name}`)
         }
         , 200)
         
@@ -47,12 +48,12 @@ class RolesMaster extends React.Component {
     }
 
     _rowRenderer = ({index, isScrolling, key, style }) => {
-        const { data: roles } = this.props
+        const { data: roles, roleInView } = this.props
         let role = roles[index]
 
         return(
-            <div key={key} style={style} >
-                <ListItem button onClick={() => this.handleClick(`/dash/roles/${role.name}`)}>
+            <div key={key} style={{...style, fontWeight: roleInView && roleInView.id === role.id ? 'bold' : 'normal' }} >
+                <ListItem button onClick={() => this.handleClick(role)} >
                      <Avatar>
                          {role.name.substring(0,2).toUpperCase()}
                      </Avatar>
@@ -101,6 +102,7 @@ class RolesMaster extends React.Component {
 
 const mapstatetoprops = (state) => {
     return {
+        roleInView: state.roles.roleInView,
         scrollTop: state.roles.scrollTop,
         browser: state.browser
     }
