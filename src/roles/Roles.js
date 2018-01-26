@@ -41,28 +41,45 @@ const ROLES_CHANGES_SUBSCRIPTION = gql`
 
 class Roles extends React.Component {
     componentWillMount() {
-        this.props.data.subscribeToMore({
+        this.props.roles.subscribeToMore({
             document: ROLES_CHANGES_SUBSCRIPTION,
             updateQuery: (prev, { subscriptionData }) => {
-                if(!subscriptionData.data) {
+                const { data } = subscriptionData
+                if(!data) {
                     return prev
                 }
 
-                return 0
+                function existAlready(id) {
+                    return prev.roles.some((el) => {
+                        return el.id === id
+                    })
+                }
+
+                function removeFromList(array, el) {
+                    return array.filter(e => e.id !== el.id)
+                }
+
+                if(data.rolesChanges.mutation === 'CREATED' && !existAlready(data.rolesChanges.node.id)) {
+                    return {
+                        roles: [...prev.roles, data.rolesChanges.node ]
+                    }
+                } else if(data.rolesChanges.mutation === 'DELETED') {
+                    return {
+                        roles : removeFromList(prev.roles, data.rolesChanges.previousValues)
+                    }
+                }
+
             }
         })
     }
 
     render() {
-
-        console.log(this.props)
-
-        const CombinedComponents = masterDetailComp(RolesMaster, RolesDetails, RolesDetailsMobile, this.props.data.roles)
+        const CombinedComponents = masterDetailComp(RolesMaster, RolesDetails, RolesDetailsMobile, this.props.roles.roles)
 
         return <CombinedComponents />
     }
 }
 
-const withData = graphql(ROLE_QUERY)(Roles)
+const withData = graphql(ROLE_QUERY, { name: 'roles' })(Roles)
 
 export default withData;

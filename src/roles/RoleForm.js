@@ -23,6 +23,7 @@ class RoleForm extends React.Component {
   handleFormSubmit = (data, mutation) => {
     executeMutation(data, mutation).then(() => {
       this.handleClose()
+      this.props.reset()
     })
   }
 
@@ -50,7 +51,7 @@ class RoleForm extends React.Component {
             }} startAdornment={ <InputAdornment position="start">₱</InputAdornment> } fullWidth={false}/>
           </DialogContent>
           <DialogActions>
-            <Button onClick={ handleSubmit(data => this.handleFormSubmit(data, createRole)) } color="primary">
+            <Button onClick={ handleSubmit(data => this.handleFormSubmit(data, createRole) )} color="primary">
               Save
             </Button>
             <Button onClick={this.handleClose} color="primary" autoFocus>
