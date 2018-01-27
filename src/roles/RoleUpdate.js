@@ -8,6 +8,7 @@ import { history } from '../app/routes'
 import { withRouter } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import { updateRoleMutation } from './rolesUtil'
+import { setIsSendingRequest } from '../layout/layoutActions'
 
 class EditButton extends Component {
 
@@ -16,8 +17,10 @@ class EditButton extends Component {
     }
 
     handleSave = () => {
-        const { form, updateRole } = this.props
+        const { form, updateRole, setIsSendingRequest } = this.props
         const { values } = form.updateRole
+
+        setIsSendingRequest(true)
 
         updateRole({
             variables: {
@@ -25,11 +28,13 @@ class EditButton extends Component {
                 name: values.name, 
                 description: values.description,
                 ratePerHour: values.ratePerHour
-            }
+            },
         }).then((d) => {
+            setIsSendingRequest(false)
             history.push(`/dash/roles/${values.name}`)
         }).catch((msg) => {
             alert(msg)
+            setIsSendingRequest(false)
         })
     }
 
@@ -58,5 +63,5 @@ const mapstatetoprops = (state) => {
     }
 }
 
-const comp = connect(mapstatetoprops)(withRouter(EditButton))
+const comp = connect(mapstatetoprops, { setIsSendingRequest })(withRouter(EditButton))
 export default graphql(updateRoleMutation, { name: 'updateRole' })(comp)

@@ -7,6 +7,8 @@ import Sidebar from './Sidebar'
 import Content from './Content'
 import { connect } from 'react-redux'
 import * as actions from './layoutActions'
+import Modal from 'material-ui/Modal'
+import { CircularProgress } from 'material-ui/Progress'
 
 const drawerWidth = 240;
 
@@ -61,7 +63,7 @@ class Layout extends React.Component {
     };
 
     render() {
-        const { classes, theme, isSideBarOpen } = this.props;
+        const { classes, theme, isSideBarOpen, isSendingRequest } = this.props;
 
         return (
         <div className={classes.root}>
@@ -69,6 +71,13 @@ class Layout extends React.Component {
               <Header classes={classes} handleDrawer={this.handleDrawerToggle}/>
               <Sidebar classes={classes} theme={theme} open={isSideBarOpen}  handleDrawer={this.handleDrawerToggle}/>
               <Content classes={classes}/>
+              {/* <Modal
+                aria-labelledby="model-requesting"
+                aria-describedby="simple-modal-description"
+                open={isSendingRequest}
+                onClose={this.handleClose}>
+                  <CircularProgress size={50} />
+              </Modal> */}
             </div>
         </div>
         );
@@ -82,7 +91,8 @@ Layout.propTypes = {
 
 function mapStateToProps(state) {  
 	return {
-		isSideBarOpen: state.layout.isSideBarOpen
+    isSideBarOpen: state.layout.isSideBarOpen,
+    isSendingRequest: state.layout.isSendingRequest
 	}
 }
 

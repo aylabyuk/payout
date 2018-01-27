@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { Route, withRouter } from 'react-router-dom'
-import { Prompt } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { Route } from 'react-router-dom'
 
 import Staffs from '../staffs/Staffs'
 import Roles from '../roles/Roles'
@@ -18,4 +16,4 @@ class Content extends Component {
     }
 }
 
-export default withRouter(Content);
+export default Content;
