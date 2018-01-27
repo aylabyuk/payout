@@ -52,6 +52,17 @@ export const createRoleMutation = gql`
     }
 `
 
+export const updateRoleMutation = gql`
+    mutation updateRole($id: ID!, $name: String!, $description: String!, $ratePerHour: Int!) {
+        updateRole(id: $id, name: $name, description: $description, ratePerHour: $ratePerHour) {
+            id
+            name
+            description
+            ratePerHour
+        } 
+    }
+`
+
 export const validateForm = values => {
     const errors = {}
     if (!values.name) {

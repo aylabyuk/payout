@@ -6,11 +6,31 @@ import { connect } from 'react-redux'
 import * as actions from './rolesActions'
 import { history } from '../app/routes'
 import { withRouter } from 'react-router-dom'
+import { graphql } from 'react-apollo'
+import { updateRoleMutation } from './rolesUtil'
 
 class EditButton extends Component {
 
-    handleClick() {
+    handleEdit = () => {
         history.push(this.props.location.pathname + '/edit')
+    }
+
+    handleSave = () => {
+        const { form, updateRole } = this.props
+        const { values } = form.updateRole
+
+        updateRole({
+            variables: {
+                id: values.id,
+                name: values.name, 
+                description: values.description,
+                ratePerHour: values.ratePerHour
+            }
+        }).then((d) => {
+            history.push(`/dash/roles/${values.name}`)
+        }).catch((msg) => {
+            alert(msg)
+        })
     }
 
     render() {
@@ -20,10 +40,10 @@ class EditButton extends Component {
         return (
             <div>
                 {editing ? 
-                    <Button raised color='secondary'>
+                    <Button raised color='secondary' onClick={this.handleSave}>
                         Save
                     </Button>
-                    : <IconButton color="inherit" onClick={this.handleClick.bind(this)}>
+                    : <IconButton color="inherit" onClick={this.handleEdit}>
                         <EditIcon />
                     </IconButton>
                 }
@@ -32,4 +52,11 @@ class EditButton extends Component {
     }
 }
 
-export default withRouter(EditButton)
+const mapstatetoprops = (state) => {
+    return {
+        form: state.form
+    }
+}
+
+const comp = connect(mapstatetoprops)(withRouter(EditButton))
+export default graphql(updateRoleMutation, { name: 'updateRole' })(comp)
