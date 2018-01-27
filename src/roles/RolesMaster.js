@@ -34,15 +34,23 @@ class RolesMaster extends React.Component {
     }
 
     handleClick = (role) => {
-        const { setRoleInView, isEditMode, setEditMode } = this.props
+        const { setRoleInView, isEditMode, setEditMode, setDetailsMobile } = this.props
+        setTimeout(() => {
             if(isEditMode) {
                 if(window.confirm('All unsaved changes will be lost.')) {
-                    setRoleInView(role)
                     setEditMode(false)
+                    history.push(`/dash/roles/${role.name}`)
+                    setDetailsMobile(true)
+                    setRoleInView(role)
+                    return 0
                 }
             } else {
+                history.push(`/dash/roles/${role.name}`)
+                setDetailsMobile(true)
                 setRoleInView(role)
-            }  
+            }
+        }, 100)
+
     }
 
     handleCreate = () => {
@@ -50,16 +58,13 @@ class RolesMaster extends React.Component {
     }
 
     _rowRenderer = ({index, isScrolling, key, style }) => {
-        const { data: roles, roleInView, setDetailsMobile, path } = this.props
+        const { data: roles, roleInView, path } = this.props
         let role = roles[index]
 
         return(
             <div key={key} 
                 style={{...style, fontWeight: roleInView && roleInView.id === role.id && path !== '/dash/roles' ? 'bold' : 'normal' }} >
-                <ListItem button onClick={() => this.handleClick(role)} onAnimationEnd={() => {
-                    setDetailsMobile(true)
-                    history.push(`/dash/roles/${role.name}`)
-                }}>
+                <ListItem button onClick={() => this.handleClick(role)} >
                      <Avatar>
                          {role.name.substring(0,2).toUpperCase()}
                      </Avatar>

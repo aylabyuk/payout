@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
+import { Prompt } from 'react-router-dom'
 
 import Staffs from '../staffs/Staffs'
 import Roles from '../roles/Roles'
