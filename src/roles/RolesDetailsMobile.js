@@ -72,7 +72,7 @@ RolesDetailsMobile.propTypes = {
 
 const maspstatetoprops = (state) => {
   return {
-    open: state.roles.isDetailsMobileOpen,
+    open: state.roles.isDetailsMobileOpen
   }
 } 
 

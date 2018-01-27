@@ -17,7 +17,6 @@ import { requireAuthentication as isAuth } from '../auth/requireAuth'
 import Preloader from '../preload/Preloader'
 import Layout from '../layout/Layout'
 import Auth from '../auth/Auth'
-import UserConfirmation from './UserConfirmation'
 
 // using redux-devtools for easy redux debugging
 const composeEnhancers =
@@ -26,27 +25,7 @@ const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
 
 // Create a history of your choosing (we're using a browser history in this case)
-export const history = createHistory({
-  // getUserConfirmation: (message, callback) => {
-  //   const modal = document.createElement('div')
-  //   document.body.appendChild(modal)
-    
-  //   const withCleanup = (answer) => {
-  //     ReactDOM.unmountComponentAtNode(modal)
-  //     document.body.removeChild(modal)
-  //     callback(answer)
-  //   }
-    
-  //   ReactDOM.render(
-  //     <UserConfirmation
-  //       message={message}
-  //       onCancel={() => withCleanup(false)}
-  //       onConfirm={() => withCleanup(true)}
-  //     />,
-  //     modal
-  //   )
-  // }
-})
+export const history = createHistory()
 
 // Build the middleware for intercepting and dispatching navigation actions
 const routerMid = routerMiddleware(history)
