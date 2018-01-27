@@ -4,11 +4,12 @@ import { renderTextField, validateForm } from './rolesUtil'
 import { Field, reduxForm } from 'redux-form'
 import { InputAdornment } from 'material-ui/Input'
 import { connect } from 'react-redux'
+import { Prompt } from 'react-router-dom'
 
 class RoleEditInfo extends React.Component {
 
     render() {
-        const { onMobile } = this.props
+        const { onMobile, dirty } = this.props
         return (
             <form style={{ padding: '30px' }}>
                 <div style={{ display: 'flex' }}>
@@ -24,6 +25,10 @@ class RoleEditInfo extends React.Component {
                 <Field name='ratePerHour' label='Rate (hourly)' component={renderTextField} custom={{
                     type: 'number'
                     }} startAdornment={ <InputAdornment position="start">₱</InputAdornment> } fullWidth={false}/>
+                <Prompt
+                    message='Any unsaved changes will be lost. Continue?'
+                    when={dirty} 
+                />
             </form>
         )
     }

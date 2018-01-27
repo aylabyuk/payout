@@ -42,9 +42,7 @@ class RolesMaster extends React.Component {
         const role = roles.filter(r => {
             return r.name === currentLocation
         })
-
-        console.log(role)
-
+        
         if(role.length !== 0) {
             setRoleInView(role[0])
         }
