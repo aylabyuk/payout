@@ -31,7 +31,7 @@ class EditButton extends Component {
             },
         }).then((d) => {
             setIsSendingRequest(false)
-            history.push(`/dash/roles/${values.name}`)
+            history.push(`/dash/roles/${values.id}`)
         }).catch((msg) => {
             alert(msg)
             setIsSendingRequest(false)

@@ -47,8 +47,8 @@ class RolesDetails extends Component {
             roles.map((r) => {
                 return (
                     <div key={r.id}>
-                        <Route exact path={`/dash/roles/${r.name}`} render={() => <RoleInfo onMobile={onMobile}/> } />
-                        <Route path={`/dash/roles/${r.name}/edit`} render={() => <RoleEditInfo onMobile={onMobile}/> } />
+                        <Route exact path={`/dash/roles/${r.id}`} render={() => <RoleInfo onMobile={onMobile}/> } />
+                        <Route path={`/dash/roles/${r.id}/edit`} render={() => <RoleEditInfo onMobile={onMobile}/> } />
                     </div>
                 )
             })

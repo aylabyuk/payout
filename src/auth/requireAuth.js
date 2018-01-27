@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 import { client } from '../index'
 
 // query for the logged in user
-export let meQuery = gql`query {
+export let meQuery = gql`query me {
     me {
         id
         email

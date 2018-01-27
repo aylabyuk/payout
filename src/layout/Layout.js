@@ -71,13 +71,6 @@ class Layout extends React.Component {
               <Header classes={classes} handleDrawer={this.handleDrawerToggle}/>
               <Sidebar classes={classes} theme={theme} open={isSideBarOpen}  handleDrawer={this.handleDrawerToggle}/>
               <Content classes={classes}/>
-              {/* <Modal
-                aria-labelledby="model-requesting"
-                aria-describedby="simple-modal-description"
-                open={isSendingRequest}
-                onClose={this.handleClose}>
-                  <CircularProgress size={50} />
-              </Modal> */}
             </div>
         </div>
         );
@@ -92,7 +85,6 @@ Layout.propTypes = {
 function mapStateToProps(state) {  
 	return {
     isSideBarOpen: state.layout.isSideBarOpen,
-    isSendingRequest: state.layout.isSendingRequest
 	}
 }
 

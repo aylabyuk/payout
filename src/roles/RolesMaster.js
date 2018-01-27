@@ -40,7 +40,7 @@ class RolesMaster extends React.Component {
         
         const currentLocation = location.pathname.substr(location.pathname.lastIndexOf('/') + 1 )
         const role = roles.filter(r => {
-            return r.name === currentLocation
+            return r.id === currentLocation
         })
         
         if(role.length !== 0) {
@@ -52,7 +52,7 @@ class RolesMaster extends React.Component {
     handleClick = (role) => {
         const {setDetailsMobile } = this.props
         setTimeout(() => {
-            history.push(`/dash/roles/${role.name}`)
+            history.push(`/dash/roles/${role.id}`)
             setDetailsMobile(true)
             return 0 
         }, 100)

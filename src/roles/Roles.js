@@ -20,7 +20,7 @@ const ROLE_QUERY = gql`
 `
 
 const ROLES_CHANGES_SUBSCRIPTION = gql`
-    subscription {
+    subscription roles {
         rolesChanges {
           mutation
           node {
