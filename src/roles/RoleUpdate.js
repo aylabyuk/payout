@@ -4,18 +4,22 @@ import EditIcon from 'material-ui-icons/Edit'
 import Button from 'material-ui/Button'
 import { connect } from 'react-redux'
 import * as actions from './rolesActions'
+import { history } from '../app/routes'
+import { withRouter } from 'react-router-dom'
 
 class EditButton extends Component {
 
     handleClick() {
-        this.props.setEditMode(true)
+        history.push(this.props.location.pathname + '/edit')
     }
 
     render() {
-        const {isEditMode} = this.props
+        const { location } = this.props
+        const editing = location.pathname.substr(location.pathname.lastIndexOf('/') + 1 ) === 'edit'
+
         return (
             <div>
-                {isEditMode ? 
+                {editing ? 
                     <Button raised color='secondary'>
                         Save
                     </Button>
@@ -28,10 +32,4 @@ class EditButton extends Component {
     }
 }
 
-const mapstatetoprops = (state) => {
-    return {
-        isEditMode: state.roles.isEditMode
-    }
-}
-
-export default connect(mapstatetoprops, actions)(EditButton)
+export default withRouter(EditButton)

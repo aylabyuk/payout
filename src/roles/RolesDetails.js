@@ -41,23 +41,21 @@ RoleInfo = connect( (state) => {
 
 class RolesDetails extends Component {
     render() {
-        const { data: roles, role, onMobile, isEditMode } = this.props
+        const { data: roles, role, onMobile } = this.props
 
         return(
             roles.map((r) => {
-                return <Route key={r.id} path={`/dash/roles/${r.name}`} render={() => 
-                    isEditMode ? <RoleEditInfo role={role} onMobile={onMobile}/> : 
-                        <RoleInfo onMobile={onMobile}/> } 
-                />
+                return (
+                    <div key={r.id}>
+                        <Route path={`/dash/roles/${r.name}`} render={() => <RoleInfo onMobile={onMobile}/> } />
+                        <Route path={`/dash/roles/${r.name}/edit`} render={() => <RoleEditInfo onMobile={onMobile}/> } />
+                    </div>
+                )
             })
         ) 
     }
 }
 
-const mapstatetoprops = (state) => {
-    return {
-        isEditMode: state.roles.isEditMode,
-    }
-}
 
-export default connect(mapstatetoprops, actions)(RolesDetails)
+
+export default connect(null, actions)(RolesDetails)

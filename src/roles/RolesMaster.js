@@ -10,6 +10,7 @@ import Typography from 'material-ui/Typography'
 import * as actions from './rolesActions' 
 import { connect } from 'react-redux'
 import { history } from '../app/routes'
+import { withRouter } from 'react-router-dom'
 
 import RoleForm from './RoleForm'
 
@@ -33,24 +34,24 @@ class RolesMaster extends React.Component {
         return <div ></div>;
     }
 
-    handleClick = (role) => {
-        const { setRoleInView, isEditMode, setEditMode, setDetailsMobile } = this.props
-        setTimeout(() => {
-            if(isEditMode) {
-                if(window.confirm('All unsaved changes will be lost.')) {
-                    setEditMode(false)
-                    history.push(`/dash/roles/${role.name}`)
-                    setDetailsMobile(true)
-                    setRoleInView(role)
-                    return 0
-                }
-            } else {
-                history.push(`/dash/roles/${role.name}`)
-                setDetailsMobile(true)
-                setRoleInView(role)
-            }
-        }, 100)
 
+    componentDidMount() {
+        const { location, data: roles, setRoleInView } = this.props
+        
+        const role = roles.filter(r => {
+            return r.name === location.pathname.substr(location.pathname.lastIndexOf('/') + 1 )
+        })
+        
+        setRoleInView(role[0])
+    }
+
+    handleClick = (role) => {
+        const {setDetailsMobile } = this.props
+        setTimeout(() => {
+            history.push(`/dash/roles/${role.name}`)
+            setDetailsMobile(true)
+            return 0 
+        }, 100)
     }
 
     handleCreate = () => {
@@ -113,7 +114,6 @@ class RolesMaster extends React.Component {
 
 const mapstatetoprops = (state) => {
     return {
-        isEditMode: state.roles.isEditMode,
         roleInView: state.roles.roleInView,
         scrollTop: state.roles.scrollTop,
         path: state.router.location.pathname,
@@ -122,4 +122,4 @@ const mapstatetoprops = (state) => {
 }
 
 const comp = withStyles(styles)(RolesMaster);
-export default connect(mapstatetoprops, actions)(comp)
+export default connect(mapstatetoprops, actions)(withRouter(comp))

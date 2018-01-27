@@ -25,18 +25,9 @@ const styles = {
 class RolesDetailsMobile extends React.Component {
 
   handleClose = () => {
-    const { isEditMode, setRoleInView, setEditMode, setDetailsMobile } = this.props
-
-    if(isEditMode) {
-      if(window.confirm('All unsaved changes will be lost.')) {
-          setDetailsMobile(false)
-          setEditMode(false)
-          setRoleInView(null)
-      }
-    } else {
-      setDetailsMobile(false)
-    }
-
+    const { setRoleInView, setDetailsMobile } = this.props
+    setDetailsMobile(false)
+    setRoleInView(null)
   };
 
   transition = (props) => {
@@ -82,7 +73,6 @@ RolesDetailsMobile.propTypes = {
 const maspstatetoprops = (state) => {
   return {
     open: state.roles.isDetailsMobileOpen,
-    isEditMode: state.roles.isEditMode
   }
 } 
 

@@ -23,16 +23,16 @@ class NavList extends React.Component {
     return (
         <List className={classes.root} subheader={<ListSubheader>navigation</ListSubheader>}>
             <ListItem button component={Link} to='/dash/staffs'>
-            <ListItemIcon>
-                <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText inset primary="Staffs" />
+              <ListItemIcon>
+                  <PeopleIcon />
+              </ListItemIcon>
+              <ListItemText inset primary="Staffs" />
             </ListItem>
             <ListItem button component={Link} to='/dash/roles'>
-            <ListItemIcon>
-                <WorkIcon />
-            </ListItemIcon>
-            <ListItemText inset primary="Roles" />
+              <ListItemIcon>
+                  <WorkIcon />
+              </ListItemIcon>
+              <ListItemText inset primary="Roles" />
             </ListItem>
         </List>
 
