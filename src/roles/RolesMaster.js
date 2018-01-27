@@ -38,11 +38,17 @@ class RolesMaster extends React.Component {
     componentDidMount() {
         const { location, data: roles, setRoleInView } = this.props
         
+        const currentLocation = location.pathname.substr(location.pathname.lastIndexOf('/') + 1 )
         const role = roles.filter(r => {
-            return r.name === location.pathname.substr(location.pathname.lastIndexOf('/') + 1 )
+            return r.name === currentLocation
         })
+
+        console.log(role)
+
+        if(role.length !== 0) {
+            setRoleInView(role[0])
+        }
         
-        setRoleInView(role[0])
     }
 
     handleClick = (role) => {
