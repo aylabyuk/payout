@@ -3,6 +3,7 @@ export const validateSignup = values => {
     const errors = {}
     if (!values.email) {
       errors.email = 'Required'
+      // eslint-disable-next-line
     } else if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(values.email))) {
         errors.email = 'Invalid email'
     }

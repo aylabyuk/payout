@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import { persistCombineReducers, persistStore } from 'redux-persist'
@@ -61,7 +60,7 @@ const store = createStore(
   )
 )
 
-let persistor = persistStore(store)
+persistStore(store)
 
 export const Routes = () => {
   return(

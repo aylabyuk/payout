@@ -7,8 +7,6 @@ import Sidebar from './Sidebar'
 import Content from './Content'
 import { connect } from 'react-redux'
 import * as actions from './layoutActions'
-import Modal from 'material-ui/Modal'
-import { CircularProgress } from 'material-ui/Progress'
 
 const drawerWidth = 240;
 
@@ -63,7 +61,7 @@ class Layout extends React.Component {
     };
 
     render() {
-        const { classes, theme, isSideBarOpen, isSendingRequest } = this.props;
+        const { classes, theme, isSideBarOpen } = this.props;
 
         return (
         <div className={classes.root}>

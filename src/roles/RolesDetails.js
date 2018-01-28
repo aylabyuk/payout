@@ -41,7 +41,7 @@ RoleInfo = connect( (state) => {
 
 class RolesDetails extends Component {
     render() {
-        const { data: roles, role, onMobile } = this.props
+        const { data: roles, onMobile } = this.props
 
         return(
             roles.map((r) => {

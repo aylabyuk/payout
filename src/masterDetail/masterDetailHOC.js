@@ -40,7 +40,7 @@ export function masterDetailComp(Master, Detail, DetailsMobile, props) {
                     </Grid>}
                 </Grid>
 
-            { browser.lessThan.medium && 
+            { browser.lessThan.medium &&
                 <DetailsMobile >
                     <div style={{ padding: '14px' }}>
                         <Detail data={props} onMobile={true}/>
