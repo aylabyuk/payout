@@ -5,6 +5,7 @@ import Button from 'material-ui/Button'
 import Avatar from 'material-ui/Avatar';
 import { List as RVList, AutoSizer } from 'react-virtualized'
 import AddIcon from 'material-ui-icons/Add';
+import PersonIcon from 'material-ui-icons/Person'
 import Tooltip from 'material-ui/Tooltip'
 import Typography from 'material-ui/Typography'
 import * as actions from '../staffs/staffsActions' 
@@ -69,7 +70,7 @@ class StaffsMaster extends React.Component {
                 style={{...style, fontWeight: staffInView && staffInView.id === staff.id && path !== '/dash/staffs' ? 'bold' : 'normal' }} >
                 <ListItem button onClick={() => this.handleClick(staff)} >
                      <Avatar>
-                         {staff.firstName.substring(0,2).toUpperCase()}
+                        <PersonIcon />
                      </Avatar>
                      <ListItemText disableTypography primary={`${staff.firstName} ${staff.lastName}`} secondary={
                          <Typography noWrap>{staff.role.name}</Typography>
