@@ -1,31 +1,25 @@
 const initialState = {
     scrollTop: 0,
     isDetailsMobileOpen: false,
-    isCreateRoleOpen: false,
-    roleInView: null
+    staffInView: null
 }
 
-export const rolesReducer = (state = initialState , action) => {
+export const staffsReducer = (state = initialState , action) => {
     switch (action.type) {
-        case 'SET_SCROLLTOP_ROLES':
+        case 'SET_SCROLLTOP':
             return {
                 ...state,
                 scrollTop: action.payload
             }
-        case 'SET_DETAILSMOBILE_ROLES':
+        case 'SET_DETAILSMOBILE':
             return {
                 ...state,
                 isDetailsMobileOpen: action.payload
             }
-        case 'TOGGLE_CREATE_ROLE':
+        case 'SET_STAFF_INVIEW':
             return {
                 ...state,
-                isCreateRoleOpen: !state.isCreateRoleOpen
-            }
-        case 'SET_ROLE_INVIEW':
-            return {
-                ...state,
-                roleInView: action.payload
+                staffInView: action.payload
             }
         default:
             return state

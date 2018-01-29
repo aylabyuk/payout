@@ -13,6 +13,19 @@ const preloadQuery = gql`query {
         description
         ratePerHour
     }
+
+    people {
+        id
+        firstName
+        lastName
+        gender
+        birthDate
+        address
+        role {
+            id
+            name
+        }
+    }
 }`;
 
 class Preloader extends React.Component {

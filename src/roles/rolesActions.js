@@ -1,10 +1,10 @@
 export const setScrollTop = (num) => ({
-    type: 'SET_SCROLLTOP',
+    type: 'SET_SCROLLTOP_ROLES',
     payload: num
 })
 
 export const setDetailsMobile = (bool) => ({
-    type: 'SET_DETAILSMOBILE',
+    type: 'SET_DETAILSMOBILE_ROLES',
     payload: bool
 })
 
