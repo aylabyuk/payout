@@ -14,7 +14,7 @@ const preloadQuery = gql`query {
         ratePerHour
     }
 
-    people {
+    people(orderBy: firstName_ASC) {
         id
         firstName
         lastName

@@ -16,7 +16,7 @@ class RoleInfo extends Component {
         }
 
         return (
-            <div>
+            <div style={{ padding: '20px 10px 5px 10px' }}>
                 <div style={{ display: 'flex' }}>
                     <Typography style={{ flex: '2 1 auto' }} type='display1'>{role.name}</Typography>
                     {!onMobile && <RoleUpdate style={{ alignSelf: 'flex-end' }}/>}

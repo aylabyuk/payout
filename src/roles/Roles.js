@@ -23,13 +23,13 @@ const ROLES_CHANGES_SUBSCRIPTION = gql`
     subscription roles {
         rolesChanges {
           mutation
+          updatedFields
           node {
             id
             name
             description
             ratePerHour
           }
-          updatedFields
           previousValues {
             id
             name

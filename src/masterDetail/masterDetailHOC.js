@@ -12,7 +12,7 @@ const styles = theme => ({
       height: 'calc(100vh - 64px)'
     },
     left: {
-      padding: 50,
+      padding: '5px 0px 5px 0px',
       borderLeft: '1px solid rgba(0, 0, 0, 0.12)',
       height: '100%'
     }
@@ -42,9 +42,7 @@ export function masterDetailComp(Master, Detail, DetailsMobile, props) {
 
             { browser.lessThan.medium &&
                 <DetailsMobile >
-                    <div style={{ padding: '14px' }}>
-                        <Detail data={props} onMobile={true}/>
-                    </div>
+                    <Detail data={props} onMobile={true}/>
                 </DetailsMobile >
             }
 
