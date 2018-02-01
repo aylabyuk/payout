@@ -5,13 +5,13 @@ import Button from 'material-ui/Button'
 import Avatar from 'material-ui/Avatar';
 import { List as RVList, AutoSizer } from 'react-virtualized'
 import AddIcon from 'material-ui-icons/Add';
-import PersonIcon from 'material-ui-icons/Person'
 import Tooltip from 'material-ui/Tooltip'
 import Typography from 'material-ui/Typography'
 import * as actions from '../staffs/staffsActions' 
 import { connect } from 'react-redux'
 import { history } from '../app/routes'
 import { withRouter } from 'react-router-dom'
+import StaffForm from './StaffForm';
 
 const styles = theme => ({
   root: {
@@ -59,7 +59,7 @@ class StaffsMaster extends React.Component {
     }
 
     handleCreate = () => {
-        // this.props.toggleCreateStaff()
+        this.props.toggleCreateStaff()
     }
 
     _rowRenderer = ({index, isScrolling, key, style }) => {
@@ -71,8 +71,6 @@ class StaffsMaster extends React.Component {
                 style={{...style, fontWeight: staffInView && staffInView.id === staff.id && path !== '/dash/staffs' ? 'bold' : 'normal' }} >
                 <ListItem button onClick={() => this.handleClick(staff)} >
                      <Avatar alt={staff.firstName} src={staff.picture.thumbnail}/>
-                        {/* <PersonIcon /> */}
-                     {/* </Avatar> */}
                      <ListItemText disableTypography primary={`${staff.firstName} ${staff.lastName}`} secondary={
                          <Typography noWrap>{staff.role.name}</Typography>
                      }/>
@@ -110,6 +108,7 @@ class StaffsMaster extends React.Component {
                         <AddIcon />
                     </Button>
                 </Tooltip>
+                <StaffForm />
             </div>
         )
     }

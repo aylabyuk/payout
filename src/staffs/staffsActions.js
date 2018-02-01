@@ -8,6 +8,10 @@ export const setDetailsMobile = (bool) => ({
     payload: bool
 })
 
+export const toggleCreateStaff = () => ({
+    type: 'TOGGLE_CREATE_STAFF'
+})
+
 export const setStaffInView = (staff) => ({
     type: 'SET_STAFF_INVIEW',
     payload: staff

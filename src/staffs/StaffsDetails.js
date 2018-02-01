@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 import Typography from 'material-ui/Typography'
-import Divider from 'material-ui/Divider'
 // import StaffUpdate from './StaffUpdate' 
 // import StaffEditInfo from './StaffEditInfo'
-import FaceIcon from 'material-ui-icons/Face'
 import Icon from 'material-ui/Icon'
 import Avatar from 'material-ui/Avatar'
 import { connect } from 'react-redux'
@@ -52,13 +50,11 @@ const styles = {
 
 class StaffInfo extends Component {
     render() {
-        const { staff, onMobile, classes } = this.props
+        const { staff, classes } = this.props
 
         if(!staff) {
             return <div />
         }
-
-        console.log(staff)
 
         const Info = (p) => { 
             return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
