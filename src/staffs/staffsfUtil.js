@@ -80,7 +80,7 @@ export async function executeMutation(data, mutate) {
             address: data.address,
             phoneNumber: data.phoneNumber,
             email: data.email,
-            staffId: data.staffId,
+            roleId: data.roleId,
             picLarge: data.picLarge,
             picMedium: data.picMedium,
             picThumbnail: data.picThumbnail      
@@ -134,7 +134,7 @@ export const createStaffMutation = gql`
                 medium
                 thumbnail
             }
-            staff {
+            role {
                 id
                 name
                 description

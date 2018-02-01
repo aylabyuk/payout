@@ -20,17 +20,45 @@ import { renderTextField,
   validateForm } from './staffsfUtil'
 import { graphql } from 'react-apollo'
 import RolesAutosuggest from '../roles/RolesAutosuggest';
+import axios from 'axios'
 
 class StaffForm extends React.Component {
   handleClose = () => {
     this.props.toggleCreateStaff()
   };
 
+  getRandomProfilePic = async (gender) => {
+    return await axios.get(`https://randomuser.me/api/?gender=${gender}`)
+      .then((res) => {
+        return res.data.results[0].picture
+      }).catch((err) => {
+        console.log(err)
+      })
+  }
+
   handleFormSubmit = (data, mutation) => {
-    executeMutation(data, mutation).then(() => {
-      this.handleClose()
-      this.props.reset()
-    })
+
+    if(!this.props.selectedRoleId) {
+      alert('role id not found.')
+    } else {
+
+      this.getRandomProfilePic(data.gender.toLowerCase()).then(pic => {
+        console.log(pic)
+
+        data.roleId = this.props.selectedRoleId
+        data.picLarge = pic.large
+        data.picMedium = pic.medium
+        data.picThumbnail = pic.thumbnail
+
+        executeMutation(data, mutation).then(() => {
+          this.handleClose()
+          this.props.reset()
+        })
+
+      })
+
+      
+    }
   }
 
   render() {
@@ -75,7 +103,8 @@ StaffForm.propTypes = {
 
 const mapstatetoprops = (state) => {
     return {
-        open: state.staffs.isCreateStaffOpen
+        open: state.staffs.isCreateStaffOpen,
+        selectedRoleId: state.roles.selectedRoleInAutosuggest ? state.roles.selectedRoleInAutosuggest.id : null
     }
 }
 
