@@ -41,6 +41,7 @@ export const renderGenderDropDown = ({
             inputProps={{
                 id: 'age-native-simple',
             }}
+            error={touched && error ? true : false}
             {...input}
             {...custom}
         >   
@@ -63,6 +64,7 @@ export const renderDatePicker = ({
         InputLabelProps={{
           shrink: true,
         }}
+        error={touched && error ? true : false}
         {...input}
         {...custom}
     />
@@ -93,8 +95,31 @@ export async function executeMutation(data, mutate) {
 }
 
 export const createStaffMutation = gql`
-    mutation createStaff($name: String!, $description: String!, $ratePerHour: Int!) {
-        createStaff(name: $name, description: $description, ratePerHour: $ratePerHour) {
+    mutation createStaff(
+        $firstName: String!
+        $lastName: String!
+        $gender: Gender!
+        $birthdate: DateTime! 
+        $address: String!
+        $phoneNumber: String
+        $email: String
+        $roleId: ID!
+        $picLarge: String
+        $picMedium: String
+        $picThumbnail: String) {
+        createPerson(
+            firstName: $firstName
+            lastName: $lastName
+            gender: $gender
+            birthdate: $birthdate
+            address: $address
+            phoneNumber: $phoneNumber
+            email: $email
+            roleId: $roleId
+            picLarge: $picLarge
+            picMedium: $picMedium
+            picThumbnail: $picThumbnail
+        ) {
             id
             firstName
             lastName
@@ -131,19 +156,49 @@ export const updateStaffMutation = gql`
 
 export const validateForm = values => {
     const errors = {}
-    if (!values.name) {
-      errors.name = 'Name required'
+    if (!values.firstName) {
+      errors.firstName = 'this field is required'
     }
-  
-    if (!values.description) {
-      errors.description = 'Description required'
+    
+    if (!values.lastName) {
+        errors.lastName = 'this field is required'
     }
 
-    if (!values.ratePerHour) {
-        errors.ratePerHour = 'Required'
-    } else if(values.ratePerHour < 100) {
-        errors.ratePerHour = 'rate per hour must at least greater than or equal to 100'
+    if (!values.gender) {
+        errors.gender = 'this field is required'
+    }
+    
+    if (!values.address) {
+        errors.address = 'this field is required'
+    }
+
+    if (!values.email) {
+        errors.email = 'this field is required'
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Invalid email address'
+    }
+
+    if (!values.phoneNumber) {
+        errors.phoneNumber = 'this field is required'
     }
   
     return errors
 }
+
+export const normalizePhone = value => {
+    if (!value) {
+      return value
+    }
+  
+    const onlyNums = value.replace(/[^\d]/g, '')
+    if (onlyNums.length <= 3) {
+      return onlyNums
+    }
+    if (onlyNums.length <= 7) {
+      return `${onlyNums.slice(0, 3)}-${onlyNums.slice(3)}`
+    }
+    return `${onlyNums.slice(0, 3)}-${onlyNums.slice(3, 6)}-${onlyNums.slice(
+      6,
+      10
+    )}`
+  }

@@ -2,7 +2,8 @@ const initialState = {
     scrollTop: 0,
     isDetailsMobileOpen: false,
     isCreateRoleOpen: false,
-    roleInView: null
+    roleInView: null,
+    selectedRoleInAutosuggest: null
 }
 
 export const rolesReducer = (state = initialState , action) => {
@@ -26,6 +27,11 @@ export const rolesReducer = (state = initialState , action) => {
             return {
                 ...state,
                 roleInView: action.payload
+            }
+        case 'SET_SELECTED_ROLE_IN_AUTOSUGGEST':
+            return {
+                ...state,
+                selectedRoleInAutosuggest: action.payload
             }
         default:
             return state

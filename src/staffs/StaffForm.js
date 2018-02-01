@@ -16,8 +16,10 @@ import { renderTextField,
   renderDatePicker,
   executeMutation, 
   createStaffMutation, 
+  normalizePhone,
   validateForm } from './staffsfUtil'
 import { graphql } from 'react-apollo'
+import RolesAutosuggest from '../roles/RolesAutosuggest';
 
 class StaffForm extends React.Component {
   handleClose = () => {
@@ -44,22 +46,14 @@ class StaffForm extends React.Component {
         >
           <DialogTitle id="responsive-dialog-title">{"Create Staff"}</DialogTitle>
           <DialogContent>
-            {/* <Field name='name' label='Name' component={renderTextField} fullWidth={true}/>
-            <Field name='description' label='Description' component={renderTextField} custom={{
-              multiline: true,
-              rowsMax: 10,
-              rows: 5
-            }} fullWidth={true}/>
-            <Field name='ratePerHour' label='Rate (hourly)' component={renderTextField} custom={{
-              type: 'number'
-            }} startAdornment={ <InputAdornment position="start">₱</InputAdornment> } fullWidth={false}/> */}
+            <RolesAutosuggest />
             <Field name='firstName' label='firstname' component={renderTextField} fullWidth={true}/>
             <Field name='lastName' label='lastname' component={renderTextField} fullWidth={true}/>
             <Field name='gender' component={renderGenderDropDown} />
             <Field name='birthdate' component={renderDatePicker}/>
             <Field name='address' label='address' component={renderTextField} fullWidth={true}/>
             <Field name='email' label='email' component={renderTextField} fullWidth={true}/>
-            <Field name='phoneNumber' label='phone' component={renderTextField} fullWidth={true}/>
+            <Field name='phoneNumber' label='phone' component={renderTextField} fullWidth={true} normalize={normalizePhone}/>
           </DialogContent>
           <DialogActions>
             <Button onClick={ handleSubmit(data => this.handleFormSubmit(data, createStaff) )} color="primary">

@@ -16,3 +16,8 @@ export const setRoleInView = (role) => ({
     type: 'SET_ROLE_INVIEW',
     payload: role
 })
+
+export const setSelectedRoleInAutoSuggest = (id) => ({
+    type: 'SET_SELECTED_ROLE_IN_AUTOSUGGEST',
+    payload: id
+})
