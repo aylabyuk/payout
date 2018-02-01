@@ -12,6 +12,7 @@
     "apollo-link-logger": "^1.2.0",
     "apollo-link-ws": "^1.0.4",
     "apollo-utilities": "^1.0.4",
+    "axios": "^0.17.1",
     "compose": "^0.1.2",
     "graphql": "^0.12.3",
     "graphql-tag": "^2.6.1",

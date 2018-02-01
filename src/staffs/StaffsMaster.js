@@ -29,6 +29,7 @@ const styles = theme => ({
 });
 
 class StaffsMaster extends React.Component {
+
     _noRowsRenderer = () => {
         return <div ></div>;
     }
@@ -64,14 +65,14 @@ class StaffsMaster extends React.Component {
     _rowRenderer = ({index, isScrolling, key, style }) => {
         const { data: staffs, staffInView, path } = this.props
         let staff = staffs[index]
-
+        
         return(
             <div key={key} 
                 style={{...style, fontWeight: staffInView && staffInView.id === staff.id && path !== '/dash/staffs' ? 'bold' : 'normal' }} >
                 <ListItem button onClick={() => this.handleClick(staff)} >
-                     <Avatar>
-                        <PersonIcon />
-                     </Avatar>
+                     <Avatar alt={staff.firstName} src={staff.picture.thumbnail}/>
+                        {/* <PersonIcon /> */}
+                     {/* </Avatar> */}
                      <ListItemText disableTypography primary={`${staff.firstName} ${staff.lastName}`} secondary={
                          <Typography noWrap>{staff.role.name}</Typography>
                      }/>

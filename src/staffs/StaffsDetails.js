@@ -58,6 +58,15 @@ class StaffInfo extends Component {
             return <div />
         }
 
+        console.log(staff)
+
+        const Info = (p) => { 
+            return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Icon color='secondary' style={{ fontSize: 30 }}>{p.icon}</Icon>
+                <Typography type='body1'>{p.text}</Typography>
+            </div>
+        } 
+
         return (
             <div style={{ position: 'relative' }}>
                 <div className={classes.root}>
@@ -65,21 +74,18 @@ class StaffInfo extends Component {
                     <div className={classes.bottom}>
                         <Typography type='display2'>{`${staff.firstName} ${staff.lastName}`}</Typography>
                         <Typography type='display1'>{staff.role.name}</Typography>
-                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                            <Icon color='secondary' style={{ fontSize: 30 }}>fingerprint</Icon>
-                            <Typography type='headline'>{ staff.gender + ' • ' + moment().diff(staff.birthDate, 'years')}</Typography>
-                        </div>
-                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                            <Icon color='secondary' style={{ fontSize: 30 }}>place</Icon>
-                            <Typography type='headline'>{staff.address}</Typography>
-                        </div>
+                        <br />
+                        <Info icon='fingerprint' text={staff.gender + ' • ' + moment().diff(staff.birthDate, 'years')}/>
+                        <Info icon='place' text={staff.address} />
+                        <Info icon='email' text={staff.email} />
+                        <Info icon='phone' text={staff.phoneNumber} />
 
                     </div>
                 </div>
                 <div className={classes.avatarContainer}>
-                    <Avatar className={classes.bigAvatar}>
-                        <FaceIcon className={classes.avatarImg}/>
-                    </Avatar>
+                    <Avatar className={classes.bigAvatar} alt={staff.firstName} src={staff.picture.large} />
+                        {/* <FaceIcon className={classes.avatarImg}/> */}
+                    {/* </Avatar> */}
                 </div>
             </div>
         );

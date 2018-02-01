@@ -10,24 +10,33 @@ import gql from 'graphql-tag'
 
 const STAFF_QUERY = gql`
     query {
-        people(orderBy: firstName_ASC) {
+        staffs: people(orderBy: firstName_ASC) {
             id
             firstName
             lastName
             gender
             birthDate
             address
+            phoneNumber
+            email
+            picture {
+              id
+              large
+              medium
+              thumbnail
+            }
             role {
-                id
-                name
+              id
+              name
+              description
             }
         }
     }
 `
 
 const PEOPLE_CHANGES_SUBSCRIPTION = gql`
-    subscription staff {
-        staffChanges: peopleChanges {
+    subscription staffs {
+        staffsChanges: peopleChanges {
             mutation
             updatedFields
             previousValues {
@@ -45,6 +54,10 @@ const PEOPLE_CHANGES_SUBSCRIPTION = gql`
                 gender
                 address
                 birthDate
+                role {
+                    id
+                    name
+                }
             }
         }
     }
@@ -61,8 +74,13 @@ class Staffs extends Component {
                 }
 
                 if(data.staffsChanges.mutation === 'CREATED' && !existAlready(prev.staffs ,data.staffsChanges.node.id)) {
-                    return {
-                        staffs: [...prev.staffs, data.staffsChanges.node ]
+                    if(data.staffsChanges.node.role === null) {
+                        console.log('role is null')
+                        return prev
+                    } else {
+                        return {
+                            staffs: [...prev.staffs, data.staffsChanges.node ]
+                        }
                     }
                 } else if(data.staffsChanges.mutation === 'DELETED') {
                     return {
@@ -80,7 +98,7 @@ class Staffs extends Component {
 
     render() {
 
-        const CombinedComponents = masterDetailComp(StaffsMaster, StaffsDetails, StaffsDetailsMobile, this.props.staffs.people)
+        const CombinedComponents = masterDetailComp(StaffsMaster, StaffsDetails, StaffsDetailsMobile, this.props.staffs.staffs)
 
         return <CombinedComponents />
     }
