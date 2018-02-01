@@ -18,14 +18,20 @@ import { ApolloLink, split } from 'apollo-link'
 import { WebSocketLink } from 'apollo-link-ws'
 import { getMainDefinition } from 'apollo-utilities'
 
-const GqlServer = '192.168.0.110:4000'
+// https://payout-app-aoaztyqpdx.now.sh/
+
+const GqlServer = 'https://payout-app-aoaztyqpdx.now.sh/'
+const GqlServerWs = 'ws://payout-app-aoaztyqpdx.now.sh/'
+
+// const GqlServer = 'http://192.168.0.110:4000/'
+// const GqlServerWs = 'ws://192.168.0.110:4000/'
 
 const httpLink = createHttpLink({
-    uri: `http://${GqlServer}/`
+    uri: GqlServer
 })
 
 const wsLink = new WebSocketLink({
-    uri: `ws://${GqlServer}/`,
+    uri: GqlServerWs,
     options: {
         reconnect: true
     }
