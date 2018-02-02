@@ -20,11 +20,11 @@ import { getMainDefinition } from 'apollo-utilities'
 
 // https://payout-app-aoaztyqpdx.now.sh/
 
-// const GqlServer = 'https://payout-app-aoaztyqpdx.now.sh/'
-// const GqlServerWs = 'wss://payout-app-aoaztyqpdx.now.sh/'
+const GqlServer = 'https://payout-app-aoaztyqpdx.now.sh/'
+const GqlServerWs = 'wss://payout-app-aoaztyqpdx.now.sh/'
 
-const GqlServer = 'http://192.168.0.110:4000/'
-const GqlServerWs = 'ws://192.168.0.110:4000/'
+// const GqlServer = 'http://192.168.0.110:4000/'
+// const GqlServerWs = 'ws://192.168.0.110:4000/'
 
 const httpLink = createHttpLink({
     uri: GqlServer
