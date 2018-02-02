@@ -4,8 +4,9 @@ import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button'
 
-export default ({ classes, handleDrawer }) => 
+export default ({ classes, handleDrawer, handleLogout }) => 
   <AppBar className={classes.appBar}>
     <Toolbar>
       <IconButton
@@ -16,8 +17,9 @@ export default ({ classes, handleDrawer }) =>
       >
         <MenuIcon />
       </IconButton>
-      <Typography type="title" color="inherit" noWrap>
+      <Typography type="title" color="inherit" noWrap className={classes.flex}>
         Payout
       </Typography>
+      <Button color="inherit" onClick={handleLogout}>Logout</Button>
     </Toolbar>
   </AppBar>

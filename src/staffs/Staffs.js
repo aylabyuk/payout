@@ -29,6 +29,7 @@ const STAFF_QUERY = gql`
               id
               name
               description
+              ratePerHour
             }
         }
     }
@@ -57,6 +58,7 @@ const PEOPLE_CHANGES_SUBSCRIPTION = gql`
                 role {
                     id
                     name
+                    ratePerHour
                 }
             }
         }

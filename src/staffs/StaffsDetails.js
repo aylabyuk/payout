@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 import Typography from 'material-ui/Typography'
 // import StaffUpdate from './StaffUpdate' 
-// import StaffEditInfo from './StaffEditInfo'
+import StaffEncodeDialog from './StaffEncodeDialog'
 import Icon from 'material-ui/Icon'
 import Avatar from 'material-ui/Avatar'
 import { connect } from 'react-redux'
@@ -75,13 +75,14 @@ class StaffInfo extends Component {
                         <Info icon='place' text={staff.address} />
                         <Info icon='email' text={staff.email} />
                         <Info icon='phone' text={staff.phoneNumber} />
-
+                        <br />
+                        <br />
+                        <br />
+                        <StaffEncodeDialog staff={staff}/>
                     </div>
                 </div>
                 <div className={classes.avatarContainer}>
                     <Avatar className={classes.bigAvatar} alt={staff.firstName} src={staff.picture.large} />
-                        {/* <FaceIcon className={classes.avatarImg}/> */}
-                    {/* </Avatar> */}
                 </div>
             </div>
         );
@@ -104,7 +105,6 @@ class StaffsDetails extends Component {
                 return (
                     <div key={r.id}>
                         <Route exact path={`/dash/staffs/${r.id}`} render={() => <StaffInfo onMobile={onMobile}/> } />
-                        {/* <Route path={`/dash/staffs/${r.id}/edit`} render={() => <StaffEditInfo onMobile={onMobile}/> } /> */}
                     </div>
                 )
             })

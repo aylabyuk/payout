@@ -55,12 +55,32 @@ export const renderGenderDropDown = ({
 export const renderDatePicker = ({
     input,
     meta: { touched, error },
-    custom
+    custom,
+    label
 }) => (
     <TextField
         id="date"
-        label="birthdate"
+        label={label}
         type="date"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        error={touched && error ? true : false}
+        {...input}
+        {...custom}
+    />
+)
+
+export const renderTimePicker = ({
+    input,
+    meta: { touched, error },
+    custom,
+    label
+}) => (
+    <TextField
+        id="time"
+        label={label}
+        type="time"
         InputLabelProps={{
           shrink: true,
         }}
@@ -143,16 +163,16 @@ export const createStaffMutation = gql`
     }
 `
 
-export const updateStaffMutation = gql`
-    mutation updateStaff($id: ID!, $name: String!, $description: String!, $ratePerHour: Int!) {
-        updateStaff(id: $id, name: $name, description: $description, ratePerHour: $ratePerHour) {
-            id
-            name
-            description
-            ratePerHour
-        } 
-    }
-`
+// export const updateStaffMutation = gql`
+//     mutation updateStaff($id: ID!, $name: String!, $description: String!, $ratePerHour: Int!) {
+//         updateStaff(id: $id, name: $name, description: $description, ratePerHour: $ratePerHour) {
+//             id
+//             name
+//             description
+//             ratePerHour
+//         } 
+//     }
+// `
 
 export const validateForm = values => {
     const errors = {}

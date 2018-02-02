@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 
 import PeopleIcon from 'material-ui-icons/People'
 import WorkIcon from 'material-ui-icons/Work'
+import CreateIcon from 'material-ui-icons/Create'
 
 const styles = theme => ({
   root: {

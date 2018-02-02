@@ -17,6 +17,9 @@ const styles = theme => ({
     zIndex: 1,
     overflow: 'hidden',
   },
+  flex: {
+    flex: 1,
+  },
   appFrame: {
     display: 'flex',
     width: '100%',
@@ -56,6 +59,11 @@ const styles = theme => ({
 
 class Layout extends React.Component {
 
+    handleLogout = () => {
+      localStorage.clear()
+      window.location.reload()
+    };
+
     handleDrawerToggle = () => {
         this.props.toggleSideBar()
     };
@@ -66,7 +74,7 @@ class Layout extends React.Component {
         return (
         <div className={classes.root}>
             <div className={classes.appFrame}>
-              <Header classes={classes} handleDrawer={this.handleDrawerToggle}/>
+              <Header classes={classes} handleDrawer={this.handleDrawerToggle} handleLogout={this.handleLogout}/>
               <Sidebar classes={classes} theme={theme} open={isSideBarOpen}  handleDrawer={this.handleDrawerToggle}/>
               <Content classes={classes}/>
             </div>

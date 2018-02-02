@@ -17,7 +17,7 @@ import { renderTextField,
   executeMutation, 
   createStaffMutation, 
   normalizePhone,
-  validateForm } from './staffsfUtil'
+  validateForm } from './staffsUtil'
 import { graphql } from 'react-apollo'
 import RolesAutosuggest from '../roles/RolesAutosuggest';
 import axios from 'axios'
@@ -78,7 +78,7 @@ class StaffForm extends React.Component {
             <Field name='firstName' label='firstname' component={renderTextField} fullWidth={true}/>
             <Field name='lastName' label='lastname' component={renderTextField} fullWidth={true}/>
             <Field name='gender' component={renderGenderDropDown} />
-            <Field name='birthdate' component={renderDatePicker}/>
+            <Field label='birthdate' name='birthdate' component={renderDatePicker}/>
             <Field name='address' label='address' component={renderTextField} fullWidth={true}/>
             <Field name='email' label='email' component={renderTextField} fullWidth={true}/>
             <Field name='phoneNumber' label='phone' component={renderTextField} fullWidth={true} normalize={normalizePhone}/>
