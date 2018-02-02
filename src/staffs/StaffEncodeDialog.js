@@ -40,7 +40,7 @@ class StaffEncodeDialog extends React.Component {
       <div>
         <Button color='primary' onClick={this.handleClickOpen}>encode</Button>
         <Dialog
-          fullScreen={fullScreen}
+          fullScreen={false}
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="responsive-dialog-title"
